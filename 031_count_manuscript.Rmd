@@ -79,7 +79,7 @@ logFC Error Rate Results
 ```{r countDiscussion, child="mgtst_pub/Discussion.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
 ``` 
 
-## Supplemental
+
 ```{r supplemental, child="results/Supplemental.Rmd", warning=FALSE, message=FALSE, echo = FALSE, eval = FALSE}
 ```
 
