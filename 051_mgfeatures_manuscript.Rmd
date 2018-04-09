@@ -22,9 +22,24 @@ We developed the R package metagenomeFeatures for working with both 16S rRNA gen
 
 
 __TABLE1__ 
+\begin{table}[]
 
 ## MgDb and mgFeature Class Description
 Two data structures are defined in the metagenomeFeatures package, MgDb for working with 16S rRNA databases, and mgFeatures for working with marker-gene survey feature data. There are three types of relevant information for both MgDb and mgFeatures class objects, (1) the sequences themselves, (2) sequence taxonomic lineage, and (3) a phylogenetic tree representing the evolutionary relationship between features. MgDb and mgFeatures data structures are both S4 object oriented classes with slots for taxonomic, sequence, phylogenetic, and metadata. 
+\centering
+\caption{16S rRNA gene sequence databases with Bioconductor annotation packages we developed.}
+\label{dbTable}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Database   & Version & Sequences & Taxonomic System \\ \midrule
+Greengenes & 13.52   & 1,262,986 & NCBI             \\
+RDP        & 11.5    & 3,356,809 & Bergey’s         \\
+SILVA      & 128.1   & 1,922,213 & Bergey’s         \\ \bottomrule
+\end{tabular}
+\end{table}
+
+## \tt{MgDb} and \tt{mgFeatures} Class Description
+Two data structures are defined in the metagenomeFeatures package, \tt{MgDb} for working with 16S rRNA databases, and \tt{mgFeatures} for working with marker-gene survey feature data. There are three types of relevant information for both \tt{MgDb} and \tt{mgFeatures} class objects, (1) the sequences themselves, (2) sequence taxonomic lineage, and (3) a phylogenetic tree representing the evolutionary relationship between features. \tt{MgDb} and \tt{mgFeatures} data structures are both S4 object oriented classes with slots for taxonomic, sequence, phylogenetic, and metadata.
 
 As the 16S rRNA databases contain hundreds of thousands to millions of sequences, an SQLite database is used to store the taxonomic and sequence data. Using an SQLite database prevents the user from loading the full database into memory. The database connection is managed using the RSQLite R package (Kirill Müller, Hadley Wickham, David A. James, and Seth Falcon 2017). The taxonomic data are accessed using the dplyr and dbplyr packages (Wickham 2017; Hadley Wickham, Romain Francois, Lionel Henry, and Kirill Müller 2017). The DECIPHER package is used to format the sequence data as an SQLite database (Wright 2016). The phylo class, defined in a APE R package, is used to define the tree slot (Paradis, Claude, and Strimmer 2004). We developed Bioconductor annotation packages for commonly used databases, Greengenes, RDP, and SILVA (Table 1, Cole et al. 2014; Quast et al. 2012; DeSantis et al. 2006). Along with database specific sequence identifiers RNAcentral indentifers are included in the SQLite table for inter-database comparisons.
 
