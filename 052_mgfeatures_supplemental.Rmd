@@ -187,7 +187,6 @@ v4_dist_anno_df <- v4_dist_df %>%
  v4_dist_anno_filt <- filter(v4_dist_anno_df,  Keys != "329842", Keys2 != "329842")
 ```
 
-********************************************************************************
 
 #### Amplicon Sequence Lengths
 The trimmed sequence length ranges between 0 and 1500, due to sequences without primer matches (Fig. \@ref(fig:trimInfo)).
@@ -208,7 +207,6 @@ list(V12 = paeni_V12[[1]], V4 = paeni_V4[[1]]) %>%
     theme_bw()
 ```
 
-********************************************************************************
 
 ##### Genus Level Comparison
 
@@ -231,8 +229,6 @@ list("V4" = v4_dist_anno_filt, "V12" = v12_dist_anno_df) %>%
     theme(legend.position = "bottom")
 ```
 
-
-********************************************************************************
 
 ##### Species level comparison
 While the overall pairwise distance is greater between species than within species for the _Paenibacillus_ genus, it is important to understand how the within and between species pairwise distances compare for individual species.
