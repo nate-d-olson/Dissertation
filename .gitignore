@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+
+## Latex files 
+*.aux
