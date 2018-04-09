@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-
-## Latex files 
+## Latex files
 *.aux
+mgtst_pub
+diversity_assessment
