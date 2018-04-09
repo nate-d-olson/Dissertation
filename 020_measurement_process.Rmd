@@ -3,26 +3,28 @@
 library(qcc)
 ```
 
-```{r measurementProcess, echo = FALSE, fig.cap = "Diagram of the 16S rRNA marker gene survey measurement process for a simplified example study."}
+```{r measurementProcess, echo = FALSE, fig.cap = "Diagram of the 16S rRNA marker gene survey measurement process for a simplified example study comparing case and control treatment groups. During _Sample Collection_, samples are obtained from study participants. Colored boxes, representing the collected samples, contains the true microbial community composition indicated by cartoon microbial cells. For the cartoon cells, cells walls and 16S rRNA sequence (grey oval with colored bar) indicate biologically relevant units. DNA extraction is used to isolate DNA from the cellular material, extraction efficiency can vary by cell wall. Extraction efficiency differences are indicated by differences in the number of red, yellow, and blue in the DNA extract compared to the samples. PCR is used to target the 16S rRNA gene. Amplification efficiency biases result in differences in the proportion of red, yellow, and blue PCR products from the DNA extract. Unique sample barcodes added during PCR are indicated as teal and orange bars on left side of the PCR amplicons. Chimeras, a PCR artifact, are indicated as half blue and yellow PCR products. Sequencing libraries are produced by _Pooling_ PCR products from the two samples. Uneven pooling can result in the under-representation of a sample (teal in this example) in the sequence dataset. The resulting libraries are sequenced introducing additional artifacts indicated as grey reads, for failed sequences, and grey vertical lines for single base sequencing errors. Pre-processing assigns sequencing reads to samples using the unique barcodes, filters chimeras, and removes low quality reads. Feature inference is used to group the pre-precessed reads into biologically relevant units. Sequencing errors can result in spurious features if not assigned to the feature it is an artifact of. The yellow and blue sequences with grey vertical line are spurious features. Finally taxonomic assignment is performed as part of feature annotation. Spurious features can be assigned to the wrong organism, yellow with grey line, or be unassigned, blue with grey line."}
 knitr::include_graphics("measurement_process_draft.png")
 ```
 
-```{r cause-effect, echo=FALSE, fig.cap = "Causes (branch labels) of bias and variability indicated for different sources of error (branch text)."}
-cell_bias <- c("Storage\nConditions","DNA extraction")
+```{r cause-effect, echo=FALSE, fig.cap = "Cause-effect diagram for the 16S rRNA sequencing measurement process. Causes of bias and variability are indicated as branches, e.g. cell type, and different sources of error are indicated by branch labels, e.g. storage contions."}
+cell_bias <- c("Storage","DNA extraction")
 amp_bias <- c("PCR Primers", "Cycling Conditions")
 seq_error <- c("Polymerase","Seq Rxn","Rxn Monitoring","Base Calling")
-otu_inflation <- c("Variable Region", "Diversity\ninhomogeneity","Seq Error","Chimera")
-coverage <- c("Normalization", "DNA Quant","PCR inhibitors")
+otu_inflation <- c("Variable Region", "Seq Error","Chimera")
+coverage <- c("Normalization", "DNA Quant")
 
 cause.and.effect(
-  cause=list("Cell Type"=cell_bias, "Amplification"=amp_bias,"OTU Inflation"= otu_inflation, "Uneven Sampling"=coverage),
-                 effect="OTU\nTable",
-  title = "16S rRNA Sequencing Cause-Effect")
+  cause = list("Cell Type" = cell_bias, 
+               "Amplification" = amp_bias, 
+               "Feature Inflation" = otu_inflation, 
+               "Uneven Sampling" = coverage),
+  effect = "Count\nTable")
 
 ```
 
 
-```{r downstreamAnalysis, echo = FALSE, fig.cap = "Diagram of 16S rRNA marker gene survey differential abundance and biological diversity downstream analysis methods."}
+```{r downstreamAnalysis, echo = FALSE, fig.cap = "Diagram of 16S rRNA marker gene survey differential abundance and biological diversity downstream analysis methods. Differential abundance is a row-wise operation comparing feature abundance between treatment conditions with log fold-change (logFC) estimates calculated for each feature. Alpha diversity is a column-wise operation where a single value is calculated per sample. Beta diversity is a row- and column-wise operation, with a single value calculated for each sample pair, using paired feature information."}
 knitr::include_graphics("downstream_analysis.png")
 ```
 
