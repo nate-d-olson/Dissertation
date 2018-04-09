@@ -1,0 +1,16 @@
+---
+title: "Assessing 16S rRNA Marker-Gene Survey Measurement Process Using Mixtures of Environmental Samples"
+author: "Nathan D. Olson"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [bibliography.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Dissertation."
+---
+
+```{r setup, include=FALSE}
+# knitr::opts_chunk$set(cache = TRUE)
+```
+

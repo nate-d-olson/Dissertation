@@ -1,0 +1,80 @@
+# Introduction
+Microorganisms, the unseen majority, play an important role in environmental and human health.
+Globally there are an estimated $4$ to $6 \times 10^{30}$ prokaryotic cells on earth [@whitman1998prokaryotes; @kallmeyer2012global], which drive processes such as the carbon and nitrogen cycle [@whitman1998prokaryotes].
+In the human body bacterial cells are as abundant as human cells [@sender2016revised] and aid in fundamental processes such as digestion [@cho2012human; @young2017role].
+The human gut microbiome has been linked to numerous diseases ranging from inflammatory bowel disease to autism [@cho2012human; @strati2017new].
+Biotherapeutics, probiotics developed to treat disease, have the potential to revolutionize medicine and treat such diseases [@young2017role].
+For example fecal microbiome transplants have been successfully used to treat recalcitrant _Clostridium dificile_ infections [@rao2015fecal].
+
+
+Recent advances in DNA sequencing technology have revolutionized how we measure and thus study these unseen communities.
+The two most commonly used methods to characterize microbial communities are 16S rRNA marker-gene surveys and shotgun metagenomics [@kuczynski2012experimental].
+Shotgun metagenomics is the random sequencing of all genomic material in a sample.
+16S rRNA marker-gene surveys use targeted sequencing to characterize  community taxonomic composition.
+There are benefits and disadvantage to both of these methods [@clooney2016comparing].
+Shotgun sequencing is useful for functional information and strain-level analysis whereas marker-gene sequencing provides a more complete view of the community composition.
+Additionally, shotgun sequencing is significantly more expensive than marker-gene surveys and is therefore cost prohibitive for large cohort and global studies, such as the human microbiome project [@turnbaugh2007human] and  earth microbiome project [@thompson2017communal].
+The focus of this dissertation is on assessing 16S rRNA marker-gene survey methods.
+However, the apporaches presented here are applicable to the assessment of shotgun metagenomic methods as well.
+
+
+## 16S rRNA Marker Gene Surveys
+Marker gene survey data is used to characterize both organismal and community level differences [@goodrich2014conducting].
+Differential abundance testing is a type of organismal level analysis used to identify organisms associated with specific treatment conditions, for example a pathogen associated with a disease state.
+Ecological diversity metrics are used to characterize microbial community richness and evenness within individual samples (alpha diversity) and sample pairwise similarity (beta diversity).
+
+
+Marker gene survey data is collected through a complex measurement process [@goodrich2014conducting].
+The measurement process consists of numerous laboratory and computational steps.
+The laboratory steps include DNA extraction, PCR, library prep, and sequencing.
+The computational steps include pre-processing, feature inference, feature annotation, and normalization.
+See Sections \@ref(measurement-process) and \@ref(feature-inference-and-normalization) for a detailed description of the measurement processes.
+Limitations in our understanding of the measurement process impede microbiome research.
+
+
+## Measurement Assessment
+Measurement assessment is used to characterize and validate the measurement process and as a result advance microbiome research.
+Marker-gene surveys have identified a potential connection between obesity and the gut microbiome [@ley2006microbial].
+However, a meta-analysis combining data from multiple studies only found a weak association between obesity and the gut microbiome [@sze2016looking].
+Given a well characterized measurement process we can better evaluate the robustness of a studies conclusions.
+In turn, reducing the identification of spurious associations, such as the ones identified by the obesity studies.
+
+
+A key component of measurement assessment is data with an expected value.
+Common sources of data used to assess marker-gene surveys includes, computer simulated data (_in silco_), mixtures of DNA or cells from individual organisms (mock communities), and technical replicates.
+_In silico_ data and mock communities provide expected values for use in assessment but do not recapitulate the complexity of environmental samples or the error profile of real sequencing data.
+Without an expected value technical replicates are only suitable for method comparison.
+As part of this disseration I will introduce a new data type, mixtures of environmental samples, which provide the complexity of real data and an expected value for use in assessment.
+
+## Dissertation Summary
+In this dissertation I will present a framework for 16S rRNA marker-gene survey measurement assessment using a novel mixture dataset along with software to facilitate working with 16S rRNA marker-gene survey data.
+The assessment framework was used to evaluate count table accuracy, differential abundance, and beta diversity analysis.
+Count table and differential abundance estimate accuracy for different bioinformatic pipelines is assessed by comparing expected to observed values.
+I will use the framework to assess how well bioinformatic pipelines and normalization methods minimize the impact of sequencing artifacts on beta-diversity analysis.
+In addition to the assessment framework I developed Bioconductor R packages for working with 16S rRNA marker-gene survey data and 16S rRNA databases.
+The assessment framework and software along with the assessment study results presented here will facilitate the development of improved computational methods and advance our understanding of the marker-gene survey measurement process.
+
+### Measurement Process 
+
+### Count Table Assessment 
+
+### Diversity Assessment 
+
+### MetagenomeFeatures 
+
+<!-- *  Finally, I will present the development of an R Bioconductor packages for working with 16S rRNA reference databases and marker-gene survey feature data. -->
+
+<!-- Infrastructure
+- Role of infrastructure in assessment
+  * Computational infrastructure plays and important role in assessment.
+  * Standardized data representation facilitates the comparison of measurement results obtained using different computational methods.
+  * Additionally, a mature infrastructure includes data provenance, allowing for transparency in how the data was generated and computational reproducibility.
+-->
+
+
+<!-- 16S rRNA Gene
+  * What is the 16S rRNA gene
+  * Why is it used
+  * Issues - copy number, within genome diversity, horizontal gene transfer.
+    - 16S copy number https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0420-9
+-->
