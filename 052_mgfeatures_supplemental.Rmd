@@ -9,9 +9,7 @@ While similar to determining whether a sequence represents a novel species, here
 Taxonomic resolution can vary by clade and amplicon regions, though the extent to which it varies has not been characterized.
 
 
-Here we demonstrate how `metagenomeFeatures` and `MgDb` annotation packages can be used to characterize taxonomic resolution for a specific clade and amplicon region, specifically for the _Paenibacillus_ genus and V12 and V4 regions
-Using the Greengenes 13.5, `greengenes13.5MgDb` we will first subset the database to obtain _Paenibacillus_ taxonomic and sequence data.
-Next we will explore the _Paenibacillus_ species composition, then characterize the within and between species sequence similarity for the 16S rRNA gene V12 and V4 regions.
+Here we demonstrate how `metagenomeFeatures` and the `MgDb` annotation packages can be used to characterize taxonomic resolution for a specific clade and amplicon region, specifically for the _Paenibacillus_ genus and V12 and V4 regions. Originally classified under the _Bacillus_ genus, a novel genus was formed based on the 16S rRNA gene similarity in the 1990s. _Paenibacillus_ spp. are facultative anaerobic bacteria present in a variety of environments including the soil, water, and can act as opportunistic pathogens in humans [@ouyang2008]. _Paenibacillus_ spp. will play an important role in sustainable agricultural industries [@grady2016]. As such, appropriate speciation is of interest.
 
 ### Required Packages
 Our analysis uses the `DECIPHER` package to extract the amplicon regions, perform multiple sequence alignment, and generate a pairwise sequence distance matrix [@Wright2016-mo].
