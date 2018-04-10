@@ -24,7 +24,7 @@ Rmarkdown with BMC template https://stackoverflow.com/questions/44373540/no-auth
 
 ## Results
 ### Dataset characteristics  
-```{r countSeqChar, child="mgtst_pub/results/seq_data_characteristics.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
+```{r countSeqChar, child="mgtst_pub/results/seq_data_characteristics.Rmd", warning=FALSE, message=FALSE, echo = FALSE, eval = FALSE}
 ```
 
 ### Titration Series Validation 
@@ -36,11 +36,11 @@ To evaluate the second assumption total prokaryotic DNA in the titrations sample
 
 
 #### Spike-in qPCR results   
-```{r ercc, child="mgtst_pub/results/ercc_validation.Rmd", warning=FALSE, message=FALSE, echo = FALSE, eval = FALSE}
+```{r ercc, child="mgtst_pub/results/ercc_validation.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
 ```
 
 #### Bacterial DNA Concentration 
-```{r bacCon, child="mgtst_pub/results/bac_con_validation.Rmd", warning=FALSE, message=FALSE, echo = FALSE, eval = FALSE}
+```{r bacCon, child="mgtst_pub/results/bac_con_validation.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
 ```
 
 #### Theta Estimates
