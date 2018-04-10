@@ -37,9 +37,9 @@ See @Goodrich2014 for a review of 16S rRNA marker-gene survey measurement proces
 
 The 16S rRNA gene is used for marker-gene surveys as it is universally found in all prokaryotic organisms, including both bacteria and archaea.
 The gene contains hypervariable and conserved regions.
-The conserved regions allow for the use of PCR primers which can amplify the 16S rRNA gene from diverse taxonomic groups [@Martinez-Porchas2017-pi;@Klindworth2013-uf].
+The conserved regions allow for the use of PCR primers which can amplify the 16S rRNA gene from diverse taxonomic groups [@Martinez-Porchas2017-pi;@klindworth2012evaluation].
 Whereas the hypervariable regions allow for genus and sometime species level taxonomic classification.
-Additionally, as the 16S rRNA gene is well studied there are a number of extensive well curated databses, e.g. SILVA, RDP, and Greengenes [@Quast2012-to;@McDonald2012-ro;@Cole2014-ms].
+Additionally, as the 16S rRNA gene is well studied there are a number of extensive well curated databses, e.g. SILVA, RDP, and Greengenes [@quast2012silva;@McDonald2012-ro;@Cole2014].
 There are issues with using the 16S rRNA gene as well.
 Due to the conserved nature gene sequences cannot be used for strain level taxonomic classification required for some applications such as pathogen detection [@janda200716s].
 Additionally, the 16S rRNA is a multicopy gene that is known to be horizontally transfered between organisms as a result the within genome 16S rRNA gene copy diversity can be greater than the between genome diversity for some genera [@pei2010diversity].
@@ -93,7 +93,7 @@ A limitation of distance based feature inference methods is the use of a defined
 
 Sequence inference methods, another type of features inference use statistical models or heuristics to infer the true biological sequence from which a read was generated.
 By infering the true biological sequence the method avoids having to define an arbitrary threshold for grouping sequences.
-DADA2, the first published sequence inference method uses a probabilistic model and an expectation-maximization algorithm to test whether less abundant sequences are derived from higher abundance sequences and estimate the sequence error profile [@callahan2016DADA2].
+DADA2, the first published sequence inference method uses a probabilistic model and an expectation-maximization algorithm to test whether less abundant sequences are derived from higher abundance sequences and estimate the sequence error profile [@callahan2016dada2].
 DADA2 is the only method to take into account base quality scores.
 DADA2 is computationally expensive on a per sample basis, though scalable as individual samples can be run in parallel.
 Other sequence inference methods that use heuristics to reduce the computational cost have been developed.
@@ -110,7 +110,7 @@ There are two types of normalization methods rarefaction and scaling.
 Rarefaction has its roots in ecology, where it is used to normalize sampling intensity per survey area [@Gotelli2001;@Hughes2005].
 To rareify counts, individual sample counts are randomly subsampled without replacement to a user defined level and samples with total abundance values less than the rarefaction level are dropped.
 Scaling methods normalize count table values by sample specific normalization factors.
-For total sum scaling (TSS) and cumulative sum scaling (CSS) sample counts are divided by the sum of feature counts to a defined abundance percentile, 0.75 for CSS and total abundance for TSS (proportions) [@Paulson2013].
+For total sum scaling (TSS) and cumulative sum scaling (CSS) sample counts are divided by the sum of feature counts to a defined abundance percentile, 0.75 for CSS and total abundance for TSS (proportions) [@paulson2013differential].
 Other commonly used normalization methods include relative log expression (RLE), trimmed mean of M values (TMM), and upper quartile normalization [@Robinson2010;@McCarthy2012].
 These methods these methods were originally developed for normalizing microarray and RNAseq data but have been successfully used to normalize 16S rRNA marker-gene survey data [@McMurdie2014].
 

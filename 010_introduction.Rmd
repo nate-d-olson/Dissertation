@@ -13,18 +13,18 @@ Shotgun metagenomics is the random sequencing of all genomic material in a sampl
 16S rRNA marker-gene surveys use targeted sequencing to characterize  community taxonomic composition.
 There are benefits and disadvantage to both of these methods [@clooney2016comparing].
 Shotgun sequencing is useful for functional information and strain-level analysis whereas marker-gene sequencing provides a more complete view of the community composition.
-Additionally, shotgun sequencing is significantly more expensive than marker-gene surveys and is therefore cost prohibitive for large cohort and global studies, such as the human microbiome project [@turnbaugh2007human] and  earth microbiome project [@thompson2017communal].
+Additionally, shotgun sequencing is significantly more expensive than marker-gene surveys and is therefore cost prohibitive for large cohort and global studies, such as the human microbiome project [@turnbaugh2007human] and  earth microbiome project [@Thompson2017].
 The focus of this dissertation is assessing 16S rRNA marker-gene survey methods.
 However, the apporaches presented are applicable to assessing shotgun metagenomic methods as well.
 
 
 ## 16S rRNA Marker-Gene Surveys
-Marker-gene survey data is used to characterize both organismal and community level differences [@goodrich2014conducting].
+Marker-gene survey data is used to characterize both organismal and community level differences [@Goodrich2014].
 Differential abundance testing is a type of organismal level analysis used to identify organisms associated with specific treatment conditions, for example a pathogen associated with a disease state.
 Ecological diversity metrics are used to characterize microbial community richness and evenness within individual samples (alpha diversity) and sample pairwise similarity (beta diversity).
 
 
-Marker gene survey data is collected through a complex multi-step measurement process [@goodrich2014conducting].
+Marker gene survey data is collected through a complex multi-step measurement process [@Goodrich2014].
 The measurement process consists of numerous laboratory and computational steps.
 The laboratory steps include DNA extraction, PCR, library prep, and sequencing.
 The computational steps include pre-processing, feature inference, feature annotation, and normalization.
@@ -48,10 +48,10 @@ As part of this disseration I will introduce a new data type, mixtures of enviro
 
 ## Dissertation Summary
 In this dissertation I will present a framework for 16S rRNA marker-gene survey measurement assessment using a novel mixture dataset along with software to facilitate working with 16S rRNA marker-gene survey data.
-Chapter __XYZ1__ provides an overview of the measurement process and assessment.
-In Chapter __XYZ2__ the assessment framework was used to evaluate count table accuracy, differential abundance, and beta diversity analysis.
-I will use the framework to assess how well bioinformatic pipelines and normalization methods minimize the impact of sequencing artifacts on beta-diversity analysis in Chapter __XYZ3__.
-Finally Chapter __XYZ4__ describes the Bioconductor R package, _metagenomeFeatures_ I developed for working with 16S rRNA marker-gene survey data and 16S rRNA databases.
+Chapter \@ref(Measurement Process) provides an overview of the measurement process and assessment.
+In Chapter \@ref(Count Table Assessment)  the assessment framework was used to evaluate count table accuracy, differential abundance, and beta diversity analysis.
+I will use the framework to assess how well bioinformatic pipelines and normalization methods minimize the impact of sequencing artifacts on beta-diversity analysis in Chapter \@ref(Diversity Assessment).
+Finally Chapter \@ref(metagenomeFeatures)  describes the Bioconductor R package, _metagenomeFeatures_ I developed for working with 16S rRNA marker-gene survey data and 16S rRNA databases.
 The assessment framework and software along with the assessment study results presented here will facilitate the development of improved computational methods and advance our understanding of the marker-gene survey measurement process.
 
 
@@ -66,9 +66,9 @@ Bioinformatic pipelines and normalization methods are often used to reduce biase
 Bioinformatic pipelines reduce bias by removing sequencing artifacts, such as single and multi-base pair variants, and chimeric sequences, from microbiome datasets.
 If not accounted for, these artifacts may incorrectly be attributed as novel diversity in a sample.
 Bioinformatic pipelines also use clustering or sequence inference techniques to group reads into biologically informative units.
-Standard clustering methods include _de novo_ clustering based on pairwise sequence similarities [@Schloss2005] and closed reference clustering of reads against a reference database [@Edgar2011].
+Standard clustering methods include _de novo_ clustering based on pairwise sequence similarities [@Schloss2005] and closed reference clustering of reads against a reference database [@edgar2010search].
 Open reference clustering is a combination of the two, first applying a closed reference approach, followed by _de novo_ clustering of reads that did not map to a reference [@Rideout2014].
-Sequence inference methods use statistical models and algorithms to group sequences independent of sequence similarity but based on the probability that a lower abundant sequence is an artifact originating from more highly abundant sequence, independent of sequence similarity [@callahan2016DADA2; @Amir2017].
+Sequence inference methods use statistical models and algorithms to group sequences independent of sequence similarity but based on the probability that a lower abundant sequence is an artifact originating from more highly abundant sequence, independent of sequence similarity [@callahan2016dada2; @Amir2017].
 The resulting features, OTUs (operational taxonomic units) for clustering methods and SVs (sequence variants) for sequence inference methods, have different characteristics because the different methods vary in their ability to detect and remove errors, while retaining true biological sequences.
 
 
@@ -76,7 +76,7 @@ Rarefaction and numeric normalization methods account for differences in sample 
 Rarifying abundance data traces its origins to macro ecology, where counts for a unit (sample) are randomly subsampled to a user defined constant level [@Gotelli2001].
 Although there are concerns about its statistical validity [@McMurdie2014],
 rarefaction is currently the only normalization method for unweighted, presence-absence based, beta-diversity metrics [@Weiss2017].
-For weighted, abundance based, beta-diversity analyses, we can apply numeric normalization methods, such as total and cumulative sum scaling (TSS and CSS), where counts are divided by sample total abundance (TSS) or by the cumulative abundance (CSS) for a defined percentile [@Paulson2013].
+For weighted, abundance based, beta-diversity analyses, we can apply numeric normalization methods, such as total and cumulative sum scaling (TSS and CSS), where counts are divided by sample total abundance (TSS) or by the cumulative abundance (CSS) for a defined percentile [@paulson2013differential].
 CSS is one of the few normalization methods developed specifically for 16S rRNA marker-gene survey data.
 Other normalization methods, including upper quartile (UQ), trimmed mean of M values (TMM) and relative log expression [@Robinson2010; @McCarthy2012], were initially developed for normalizing RNAseq and microarray data.
 Many studies have found these methods useful in normalizing marker-gene survey data for differential abundance analysis, though it is unclear whether these techniques are also suitable for beta-diversity analysis.
@@ -91,7 +91,7 @@ Beause these four groups of beta-diversity metrics measure different community c
 they are not interchangeable should be evaluated in a complementary manner to gain maximal insight into community differences [@Anderson2011].
 
 
-Previous studies have evaluated different bioinformatics pipelines [@Sinha2017] and normalization methods [@McMurdie2014; @Weiss2017] on beta-diversity analysis.
+Previous studies have evaluated different bioinformatics pipelines [@Sinha2017-ew] and normalization methods [@McMurdie2014; @Weiss2017] on beta-diversity analysis.
 Yet, how pipeline to account for low sequence quality and difference in coverage, affects adiversity conclusions, remains unknown.
 Our mixture dataset includes multiple technical PCR replicates, allowing us to evaluate (1) beta-diversity repeatability,
 and the ability to (2) distinguish between groups of samples with varying similarity,
@@ -102,11 +102,11 @@ enabling assessment of how each pipeline and method performs on datasets of vary
 
 ### MetagenomeFeatures
 
-A key step in 16S rRNA marker-gene surveys is comparing representative sequences  to a reference database for taxonomic classification or phylogenetic placement (Nguyen et al. 2016). There are numerous 16S rRNA reference databases of which Greengenes, RDP, and SILVA are arguably the most commonly used (DeSantis et al. 2006; Cole et al. 2014; Quast et al. 2012; McDonald et al. 2012).  Additionally, there are smaller system-specific databases such as HOMD for the human oral microbiome (Chen et al. 2010)(http://www.homd.org/) and soil reference database (Choi et al. 2017). System-specific databases can improve taxonomic assignments for microbial communities not well represented in the major databases (Rohwer et al. 2017).
+A key step in 16S rRNA marker-gene surveys is comparing representative sequences  to a reference database for taxonomic classification or phylogenetic placement [@nguyen2014tipp]. There are numerous 16S rRNA reference databases of which Greengenes, RDP, and SILVA are arguably the most commonly used [@desantis2006greengenes;@Cole2014;@quast2012silva;@McDonald2012-ro]..  Additionally, there are smaller system-specific databases such as HOMD for the human oral microbiome [@chen2010-dw;http://www.homd.org/] and soil reference database [@choi2017-hv]. System-specific databases can improve taxonomic assignments for microbial communities not well represented in the major databases ([@rohwer2017-fz].
 
-16S rRNA databases differ in the number and diversity of sequences, the taxonomic classification system, and the inclusion of intermediate ranks (Balvočiūtė and Huson 2017, Table 1). Databases format their data differently and use sequence identification systems unique to their database, challenging membership and composition comparisons. For example, Yang et al. (2016) used the SILVA database to evaluate how different 16S rRNA variable regions impact phylogenetic analysis. Similarly, Martinez-Porchas et al. (2017) also used the SILVA database to evaluate sequence similarity between 16S rRNA gene conserved regions. Differences in database formatting present a significant barrier to performing the same analysis using multiple databases. Additionally, taxonomic assignments can be database-dependent, providing further justification for database comparisons (Pettengill and Rand 2017). To facilitate database comparisons RNACentral (http://rnacentral.org/) a resource combining non-coding RNA databases, provides unique identifiers for the sequences (The RNAcentral Consortium 2017).
+16S rRNA databases differ in the number and diversity of sequences, the taxonomic classification system, and the inclusion of intermediate ranks [@balvociute2017-su]. Databases format their data differently and use sequence identification systems unique to their database, challenging membership and composition comparisons. For example, Yang et al. @yang2016sensitivity used the SILVA database to evaluate how different 16S rRNA variable regions impact phylogenetic analysis. Similarly, Martinez-Porchas et al. @Martinez-Porchas2017-pi also used the SILVA database to evaluate sequence similarity between 16S rRNA gene conserved regions. Differences in database formatting present a significant barrier to performing the same analysis using multiple databases. Additionally, taxonomic assignments can be database-dependent, providing further [@pettengill2017-jw]. To facilitate database comparisons RNACentral a resource combining non-coding RNA databases, provides unique identifiers for the sequences [@the_rnacentral_consortium2017-ai;http://rnacentral.org/].
 
-We developed the R package _metagenomeFeatures_ for working with both 16S rRNA gene database and marker-gene survey feature data. _metagenomeFeatures_ provides a common data structure for working with 16S rRNA databases and marker-gene survey feature data. Additionally this package is the first step towards the development of a common data structure for use in analyzing metagenomic and marker-gene survey data using R bioconductor packages such as _phyloseq_ (McMurdie and Holmes 2013) and _metagenomeSeq_ (Paulson et al. 2013).
+We developed the R package _metagenomeFeatures_ for working with both 16S rRNA gene database and marker-gene survey feature data. _metagenomeFeatures_ provides a common data structure for working with 16S rRNA databases and marker-gene survey feature data. Additionally this package is the first step towards the development of a common data structure for use in analyzing metagenomic and marker-gene survey data using R bioconductor packages such as _phyloseq_ [@mcmurdie2013-ij] and _metagenomeSeq_ [@paulson2013-ew].
 
 
 <!-- *  Finally, I will present the development of an R Bioconductor packages for working with 16S rRNA reference databases and marker-gene survey feature data. -->
