@@ -24,7 +24,7 @@ Rmarkdown with BMC template https://stackoverflow.com/questions/44373540/no-auth
 
 ## Results
 ### Dataset characteristics  
-```{r countSeqChar, child="mgtst_pub/results/seq_data_characteristics.Rmd", warning=FALSE, message=FALSE, echo = FALSE, eval = FALSE}
+```{r countSeqChar, child="mgtst_pub/results/seq_data_characteristics.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
 ```
 
 ### Titration Series Validation 
