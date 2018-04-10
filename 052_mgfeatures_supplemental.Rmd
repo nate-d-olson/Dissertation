@@ -78,7 +78,7 @@ ggplot() +
 
 ### Taxonomic resolution
 Next we evaluate the 16S rRNA amplicon sequencing taxonomic resolution for _Paenibacillus_ species by comparing within and between species amplicon pairwise distance for the V12 and V4 regions.
-Inorder to differentiate between species the pairwise distances for within species amplicon seqences must be less than the between species distances.
+In order to differentiate between species the pairwise distances for within species amplicon sequences must be less than the between species distances.
 Additionally the difference in amplicon sequence pairwise distances between and within species must be greater than the sequencing error rate to detect the difference.
 For our taxonomic resolution analysis we use _in-silico_ PCR to extract the V12 and V4 regions of the 16S rRNA sequences.
 We will then generate a pairwise distance matrix for the two regions and compare the within and between species pairwise distances.
@@ -91,7 +91,7 @@ For our _in-silico_ PCR we will use the following PCR primers:
 |V4     |515F - GTGCCAGCMGCCGCGGTAA |806R - GGACTACHVGGGTWTCTAAT    |
 
 #### V12
-Extracting the V12 region from the database sequences, only sequences with the expected amplicon length of 318 basepairs are included in the analysis.
+Extracting the V12 region from the database sequences, only sequences with the expected amplicon length of 318 base pairs are included in the analysis.
 
 ```{r trimSeqs, echo = TRUE}
 forward_primer <- "AGAGTTTGATCATGGCTCAG"
@@ -114,7 +114,7 @@ Generating a multiple sequence alignment using the `AlignSeqs` function in the `
 v12_align <- AlignSeqs(v12_filtered, verbose = FALSE)
 ```
 
-The resulting alingment can be viewed using the `BrowseSeqs` function in the `DECIPHER` package.
+The resulting alignment can be viewed using the `BrowseSeqs` function in the `DECIPHER` package.
 
 ```{r eval = FALSE, echo = TRUE}
 BrowseSeqs(v12_align)
@@ -190,9 +190,9 @@ v4_dist_anno_df <- v4_dist_df %>%
 
 #### Amplicon Sequence Lengths
 The trimmed sequence length ranges between 0 and 1500, due to sequences without primer matches (Fig. \@ref(fig:trimInfo)).
-These are likey partial sequences or sequences with mutation in the primer binding regions.
+These are likely partial sequences or sequences with mutation in the primer binding regions.
 The R package `PrimerMatch` (__REF__) can be used evaluate mismatches in the primer binding regions.
-Here we will limit our taxonomic resolution analysis to trimmed sequences that are consistent with the expected amplicon length of 318 bp and 252 bp for the V12 and V4 regions repectively.
+Here we will limit our taxonomic resolution analysis to trimmed sequences that are consistent with the expected amplicon length of 318 bp and 252 bp for the V12 and V4 regions respectively.
 
 ```{r trimInfo, fig.cap = "Primer trimmed sequence length and start and end positions relative to full length sequences for the V12 and V4 regions."}
 list(V12 = paeni_V12[[1]], V4 = paeni_V4[[1]]) %>%
@@ -276,4 +276,4 @@ ggpubr::ggarrange(v12_heat, v4_heat,labels = "AUTO",ncol = 1, nrow = 2,align = "
 
 ### Conclusion
 Here we demonstrate how the `metagenomeFeatures` package in conjunction with one of the associated 16S rRNA database packages, `greengenes13.5MgDb`, and other R packages, can be used to evaluate whether species level taxonomic classification is possible for a specific amplicon region.
-The approach used here can easily be extended to use different 16S rRNA databases (starting with a different `MgDb`clas object), taxonomic groups (changing filtering parameters), or amplicon regions (changing primer sequences).
+The approach used here can easily be extended to use different 16S rRNA databases (starting with a different `MgDb`class object), taxonomic groups (changing filtering parameters), or amplicon regions (changing primer sequences).

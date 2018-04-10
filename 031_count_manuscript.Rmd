@@ -48,8 +48,8 @@ To evaluate the second assumption total prokaryotic DNA in the titrations sample
 ```
 
 ### Measurement Assessment  
-Next we assessed qualitative and quantiative nature of 16S rRNA measurement process using our two-sample titration dataset. 
-For the qualitative assessment we analyzed the relative abundance of features only observed in the unmixed samples or titrations which are not expected to be observed given the tritation experimental design. 
+Next we assessed qualitative and quantitative nature of 16S rRNA measurement process using our two-sample titration dataset. 
+For the qualitative assessment we analyzed the relative abundance of features only observed in the unmixed samples or titrations which are not expected to be observed given the titration experimental design. 
 For the quantitative assessment we looked the the relative abundance and differential abundance log fold-change estimates. 
 
 #### Qualitative Assessment
