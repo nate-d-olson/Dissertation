@@ -51,7 +51,8 @@ taxa_df <- paeni_16S$taxa %>%
 
 ## Count info for text
 total_otus <- sum(taxa_df$Count)
-no_species_assignment <- taxa_df$Count[taxa_df$Species == "Unassigned"]
+unassigned_idx <- taxa_df$Species == "Unassigned"
+no_species_assignment <- taxa_df$Count[unassigned_idx]
 ```
 
 
@@ -64,7 +65,8 @@ Sequences only classified to the genus level, "Unassigned", is the most abundant
 taxa_df %>%
 ggplot() +
     geom_bar(aes(x = Species, y = Count), stat = "identity") +
-    geom_text(aes(x = Species, y = Count, label = Count),nudge_y = 75) +
+    geom_text(aes(x = Species, y = Count, label = Count), 
+              nudge_y = 75) +
     labs(y = "Number of OTUs") +
     coord_flip() +
     theme_bw() +
@@ -80,10 +82,12 @@ We will then generate a pairwise distance matrix for the two regions and compare
 
 For our _in-silico_ PCR we will use the following PCR primers:
 
-|Region |Forward                    |Reverse                        |
-|:------|:--------------------------|:------------------------------|
-|V12    |27F - AGAGTTTGATCATGGCTCAG |336R - CACTGCTGCSYCCCGTAGGAGTCT|
-|V4     |515F - GTGCCAGCMGCCGCGGTAA |806R - GGACTACHVGGGTWTCTAAT    |
+|Region |Direction |Primer                             |
+|:------|:-------- |:----------------------------------|
+|V12    |Forward   | 27F - AGAGTTTGATCATGGCTCAG        |
+|       |Reverse   | 336R - CACTGCTGCSYCCCGTAGGAGTCT   |
+|V4     |Forward   | 515F - GTGCCAGCMGCCGCGGTAA        |
+|       |Reverse   | 806R - GGACTACHVGGGTWTCTAAT       |
 
 #### V12
 Extracting the V12 region from the database sequences, only sequences with the expected amplicon length of 318 base pairs are included in the analysis.
@@ -91,7 +95,10 @@ Extracting the V12 region from the database sequences, only sequences with the e
 ```{r trimSeqs, echo = TRUE}
 forward_primer <- "AGAGTTTGATCATGGCTCAG"
 ## reverse complementing reverse primer
-reverse_primer <- as.character(reverseComplement(DNAString("CACTGCTGCSYCCCGTAGGAGTCT")))
+reverse_primer <- DNAString("CACTGCTGCSYCCCGTAGGAGTCT") %>% 
+    reverseComplement() %>% 
+    as.character()
+    
 
 paeni_V12 <- TrimDNA(paeni_16S$seq,
                                leftPatterns = forward_primer,
@@ -105,7 +112,6 @@ v12_filtered <- paeni_V12[[2]][seqs_to_use]
 Generating a multiple sequence alignment using the `AlignSeqs` function in the `DECIPHER` package.
 
 ```{r align, echo = TRUE}
-
 v12_align <- AlignSeqs(v12_filtered, verbose = FALSE)
 ```
 
@@ -136,7 +142,8 @@ v12_dist_anno_df <- v12_dist_df %>%
     left_join(tax_df) %>%
     left_join(tax_df,by = c("Keys2" = "Keys")) %>%
     dplyr::rename(Keys_Species = Species.x, Keys2_Species = Species.y) %>%
-        mutate(group_comp = if_else(Keys_Species == Keys2_Species, "within","between")) %>%
+        mutate(group_comp = if_else(Keys_Species == Keys2_Species, 
+                                    "within","between")) %>%
     filter(Keys_Species != "s__", Keys2_Species != "s__")
 ```
 
@@ -174,19 +181,22 @@ v4_dist_anno_df <- v4_dist_df %>%
     left_join(tax_df) %>%
     left_join(tax_df,by = c("Keys2" = "Keys")) %>%
     dplyr::rename(Keys_Species = Species.x, Keys2_Species = Species.y) %>%
-    mutate(group_comp = if_else(Keys_Species == Keys2_Species, "within","between")) %>%
+    mutate(group_comp = if_else(Keys_Species == Keys2_Species, 
+                                "within","between")) %>%
     filter(Keys_Species != "s__", Keys2_Species != "s__")
 
 ## Excluding outlier sequence "329842" - mean pairwise distance to all other
 ## sequences is 0.2
- v4_dist_anno_filt <- filter(v4_dist_anno_df,  Keys != "329842", Keys2 != "329842")
+ v4_dist_anno_filt <- filter(v4_dist_anno_df, 
+                             Keys != "329842", 
+                             Keys2 != "329842")
 ```
 
 
 #### Amplicon Sequence Lengths
 The trimmed sequence length ranges between 0 and 1500, due to sequences without primer matches (Fig. \@ref(fig:trimInfo)).
 These are likely partial sequences or sequences with mutations in the primer binding regions.
-The R package `PrimerMatch` (__REF__) can be used evaluate mismatches in the primer binding regions.
+The R package `PrimerMiner` [@elbrecht2017primerminer] can be used evaluate mismatches in the primer binding regions.
 Here we will limit our taxonomic resolution analysis to trimmed sequences that are consistent with the expected amplicon length of 318 bp and 252 bp for the V12 and V4 regions respectively.
 
 ```{r trimInfo, fig.cap = "Primer trimmed sequence length and start and end positions relative to full length sequences for the V12 and V4 regions."}
@@ -195,7 +205,8 @@ list(V12 = paeni_V12[[1]], V4 = paeni_V4[[1]]) %>%
     gather("key","value", -names, -amplicon) %>%
     mutate(key = if_else(key == "width", "length", key),
            key = factor(key, levels = c("length","start","end"))) %>%
-    mutate(position_type = if_else(key == "length","position", "length")) %>%
+    mutate(position_type = if_else(key == "length",
+                                   "position", "length")) %>%
     ggplot() +
     geom_histogram(aes(x = value, fill = key), bins = 100) +
     facet_grid(position_type~amplicon, scales = "free") +
@@ -233,18 +244,23 @@ In general though for species levels classification the maximum within species d
 For example as the maximum within species pairwise distance for _P. marcerans_ is 0.06 and the minimum between species pairwise distance for _P. marcerans_ and _P. barengoltzii_ is 0.02 (Fig. \@ref(fig:distHeatMap)A), correctly assigning a V12 amplicon sequences to one of these two species is not possible.
 
 
-```{r distHeatMap, fig.cap = "Pairwise distances between _Paenibacillus_ species (A) V12 and (B) V4 amplicon regions. Fill color indicates the mean pairwise sequence distance within and between species. The text indicates the maximum pairwise distance for within-species comparisons, values along the diagonal, and maximum pairwise distance for between species comparisons."}
+```{r distHeatMap, fig.cap = "Pairwise distances between _Paenibacillus_ species (A) V12 and (B) V4 amplicon regions. Fill color indicates the mean pairwise sequence distance within and between species. The text indicates the maximum pairwise distance for within-species comparisons, values along the diagonal, and maximum pairwise distance for between species comparisons.", fig.height = 8}
 v12_heat <- v12_dist_anno_df %>%
     group_by(Keys_Species, Keys2_Species, group_comp) %>%
     summarise(mean_dist = mean(distance),
               max_dist = max(distance),
               min_dist = min(distance)) %>%
-    mutate(lab_dist = if_else(group_comp == "within", max_dist, min_dist)) %>%
+    mutate(lab_dist = if_else(group_comp == "within",
+                              max_dist, min_dist)) %>%
+    ungroup() %>% 
+    mutate(Keys_Species = str_remove(Keys_Species, "s__")) %>% 
+    mutate(Keys2_Species = str_remove(Keys2_Species, "s__")) %>% 
     ggplot() +
     geom_raster(aes(x = Keys_Species,
                     y = Keys2_Species,
                     fill = mean_dist)) +
-    geom_text(aes(x = Keys_Species, y = Keys2_Species, label = round(lab_dist,2)), color = "white") +
+    geom_text(aes(x = Keys_Species, y = Keys2_Species, 
+                  label = round(lab_dist,2)), color = "white") +
     labs(x = "Species",y = "Species", fill = "Mean Dist") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = -45, hjust = -0.1))
@@ -255,17 +271,23 @@ v4_heat <- v4_dist_anno_df %>%
     summarise(mean_dist = mean(distance),
               max_dist = max(distance),
               min_dist = min(distance)) %>%
-    mutate(lab_dist = if_else(group_comp == "within", max_dist, min_dist)) %>%
+    mutate(lab_dist = if_else(group_comp == "within", 
+                              max_dist, min_dist)) %>%
+    ungroup() %>% 
+    mutate(Keys_Species = str_remove(Keys_Species, "s__")) %>% 
+    mutate(Keys2_Species = str_remove(Keys2_Species, "s__")) %>% 
     ggplot() +
     geom_raster(aes(x = Keys_Species,
                     y = Keys2_Species,
                     fill = mean_dist)) +
-    geom_text(aes(x = Keys_Species, y = Keys2_Species, label = round(lab_dist,2)), color = "white") +
+    geom_text(aes(x = Keys_Species, y = Keys2_Species, 
+                  label = round(lab_dist,2)), color = "white") +
     labs(x = "Species",y = "Species", fill = "Mean Dist") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = -45, hjust = -0.1))
 
-ggpubr::ggarrange(v12_heat, v4_heat,labels = "AUTO",ncol = 1, nrow = 2,align = "v")
+ggpubr::ggarrange(v12_heat, v4_heat,labels = "AUTO", 
+                  ncol = 1, nrow = 2,align = "v")
 ```
 
 
