@@ -5,7 +5,7 @@ _Paenibacillus_ species resolution for 16S rRNA V12 and V4 regions.
 16S rRNA amplicon sequencing is commonly used for microbial community characterization, including differential abundance analysis.
 A limitation to 16S rRNA amplicon sequencing is a lack of taxonomic resolution, where organisms are only identifiable to the genus or family level.
 We define taxonomic resolution as the ability to differentiate between groups within a taxonomic level, for example differentiating between species within a genus.
-While similar to determining whether a sequence represents a novel species, here we are only interested in determining whether the 16S rRNA region of interest contains sufficient information for species level taxonomic assignment.
+While similar to determining whether a sequence represents a novel species, here we are only interested in determining whether the 16S rRNA region of interest contains sufficient information for species-level taxonomic assignment.
 Taxonomic resolution can vary by clade and amplicon regions, though the extent to which it varies has not been characterized.
 
 
@@ -55,8 +55,8 @@ no_species_assignment <- taxa_df$Count[taxa_df$Species == "Unassigned"]
 ```
 
 
-For the Greengenes 13.5 database there are a total of `r total_otus` sequences classified as `r nlevels(taxa_df$Species)` species in the Genus _Paenibacillus_.
-The number of sequences assigned to specific _Paenibacillus_ species, range from 199 for _Paenibacillus amylolyticus_ to 2 for _Paenibacillus illinoisensis_ (Fig. \@ref(fig:speciesCount)).
+For the Greengenes 13.5 database, there are a total of `r total_otus` sequences classified as `r nlevels(taxa_df$Species)` species in the Genus _Paenibacillus_.
+The number of sequences assigned to specific _Paenibacillus_ species range from 199 _Paenibacillus amylolyticus_ to 2 _Paenibacillus illinoisensis_ (Fig. \@ref(fig:speciesCount)).
 Sequences only classified to the genus level, "Unassigned", is the most abundant group, `r no_species_assignment`.
 
 
@@ -71,14 +71,11 @@ ggplot() +
     theme(axis.text.y = element_text(face = "italic"))
 ```
 
-
-********************************************************************************
-
 ### Taxonomic resolution
-Next we evaluate the 16S rRNA amplicon sequencing taxonomic resolution for _Paenibacillus_ species by comparing within and between species amplicon pairwise distance for the V12 and V4 regions.
-In order to differentiate between species the pairwise distances for within species amplicon sequences must be less than the between species distances.
-Additionally the difference in amplicon sequence pairwise distances between and within species must be greater than the sequencing error rate to detect the difference.
-For our taxonomic resolution analysis we use _in-silico_ PCR to extract the V12 and V4 regions of the 16S rRNA sequences.
+Next, we evaluate the 16S rRNA amplicon sequencing taxonomic resolution for _Paenibacillus_ species by comparing within and between species amplicon pairwise distance for the V12 and V4 regions.
+To differentiate between species the pairwise distances for within-species amplicon sequences must be less than the between species distances.
+Additionally ,the difference in amplicon sequence pairwise distances between and within species must be greater than the sequencing error rate to detect the difference.
+For our taxonomic resolution analysis, we use _in-silico_ PCR to extract the V12 and V4 regions of the 16S rRNA sequences.
 We will then generate a pairwise distance matrix for the two regions and compare the within and between species pairwise distances.
 
 For our _in-silico_ PCR we will use the following PCR primers:
@@ -118,7 +115,7 @@ The resulting alignment can be viewed using the `BrowseSeqs` function in the `DE
 BrowseSeqs(v12_align)
 ```
 
-Generating pairwise distance matrix using the `DistanceMatrix` function in the `DECIPHER` package for taxonomic resolution analysis and converting distance matrix to data frame for analysis.
+Generating pairwise distance matrix using the `DistanceMatrix` function in the `DECIPHER` package for taxonomic resolution analysis and converting distance matrix to a data frame for analysis.
 
 ```{r v12Anno, echo = TRUE}
 v12_dist <- DistanceMatrix(v12_align,
@@ -144,7 +141,7 @@ v12_dist_anno_df <- v12_dist_df %>%
 ```
 
 #### V4
-For the V4 region we will use the same approach, extract amplicon region, filter extracted sequences based on amplicon length, generate pairwise distance matrix using a multiple sequence alignment, and then evaluate pairwise distances.
+For the V4 region, we will use the same approach, extract amplicon region, filter extracted sequences based on amplicon length, generate pairwise distance matrix using a multiple sequence alignment, and then evaluate pairwise distances.
 
 ```{r v4Anno, echo = TRUE}
 ## Extract amplicon region
@@ -188,7 +185,7 @@ v4_dist_anno_df <- v4_dist_df %>%
 
 #### Amplicon Sequence Lengths
 The trimmed sequence length ranges between 0 and 1500, due to sequences without primer matches (Fig. \@ref(fig:trimInfo)).
-These are likely partial sequences or sequences with mutation in the primer binding regions.
+These are likely partial sequences or sequences with mutations in the primer binding regions.
 The R package `PrimerMatch` (__REF__) can be used evaluate mismatches in the primer binding regions.
 Here we will limit our taxonomic resolution analysis to trimmed sequences that are consistent with the expected amplicon length of 318 bp and 252 bp for the V12 and V4 regions respectively.
 
@@ -210,8 +207,8 @@ list(V12 = paeni_V12[[1]], V4 = paeni_V4[[1]]) %>%
 
 Pairwise distance is significantly different for within and between species comparisons indicating that the V12 and V4 regions can potentially be used to classify members of the _Paenibacillus_ genus to the species level (Fig. \@ref(fig:pairDist)).
 Overall the V12 region had greater pairwise distances than V4 for both within and between species.
-It is important to also consider that the majority of sequences in the database were only classified to the genus level.
-Species level information for these sequences might yield results that are inconsistent with our analysis.
+It is important also to consider that the majority of sequences in the database were only classified to the genus level.
+Species-level information for these sequences might yield results that are inconsistent with our analysis.
 
 
 
@@ -236,7 +233,7 @@ In general though for species levels classification the maximum within species d
 For example as the maximum within species pairwise distance for _P. marcerans_ is 0.06 and the minimum between species pairwise distance for _P. marcerans_ and _P. barengoltzii_ is 0.02 (Fig. \@ref(fig:distHeatMap)A), correctly assigning a V12 amplicon sequences to one of these two species is not possible.
 
 
-```{r distHeatMap, fig.cap = "Pairwise distances between _Paenibacillus_ species (A) V12 and (B) V4 amplicon regions. Fill color indicates the mean pairwise sequence distance within and between species. The text indicates the maximum pairwise distance for within species comparisons, values along the diagonal, and maximum pairwise distance for between species comparisons."}
+```{r distHeatMap, fig.cap = "Pairwise distances between _Paenibacillus_ species (A) V12 and (B) V4 amplicon regions. Fill color indicates the mean pairwise sequence distance within and between species. The text indicates the maximum pairwise distance for within-species comparisons, values along the diagonal, and maximum pairwise distance for between species comparisons."}
 v12_heat <- v12_dist_anno_df %>%
     group_by(Keys_Species, Keys2_Species, group_comp) %>%
     summarise(mean_dist = mean(distance),
@@ -273,5 +270,5 @@ ggpubr::ggarrange(v12_heat, v4_heat,labels = "AUTO",ncol = 1, nrow = 2,align = "
 
 
 ### Conclusion
-Here we demonstrate how the `metagenomeFeatures` package in conjunction with one of the associated 16S rRNA database packages, `greengenes13.5MgDb`, and other R packages, can be used to evaluate whether species level taxonomic classification is possible for a specific amplicon region.
+Here we demonstrate how the `metagenomeFeatures` package in conjunction with one of the associated 16S rRNA database packages, `greengenes13.5MgDb`, and other R packages, can be used to evaluate whether species-level taxonomic classification is possible for a specific amplicon region.
 The approach used here can easily be extended to use different 16S rRNA databases (starting with a different `MgDb`class object), taxonomic groups (changing filtering parameters), or amplicon regions (changing primer sequences).

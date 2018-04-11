@@ -3,11 +3,11 @@
 library(qcc)
 ```
 
-```{r measurementProcess, echo = FALSE, fig.cap = "Diagram of the 16S rRNA marker gene survey measurement process for a simplified example study comparing case and control treatment groups. During _Sample Collection_, samples are obtained from study participants. Colored boxes, representing the collected samples, contains the true microbial community composition indicated by cartoon microbial cells. For the cartoon cells, cell walls and 16S rRNA sequence (grey oval with colored bar) indicate biologically relevant units. DNA extraction is used to isolate DNA from the cellular material, and extraction efficiency can vary by cell wall. Extraction efficiency differences are indicated by differences in the number of red, yellow, and blue bars in the DNA extract compared to the samples. PCR is used to target the 16S rRNA gene. Amplification efficiency biases result in differences in the proportion of red, yellow, and blue PCR products from the DNA extract. Unique sample barcodes added during PCR are indicated as teal and orange bars on left side of the PCR amplicons. Chimeras, a PCR artifact, are indicated as half blue and yellow PCR products. Sequencing libraries are produced by _Pooling_ PCR products from the two samples. Uneven pooling can result in the under-representation of a sample (teal in this example) in the sequence dataset. The resulting libraries are sequenced, introducing additional artifacts indicated as grey reads, for failed sequences, and grey vertical lines for single base sequencing errors. Pre-processing assigns sequencing reads to samples using the unique barcodes and removes low quality reads as well as filters chimeras. Feature inference is used to group the pre-processed reads into biologically relevant units. Sequencing errors can result in spurious features if not assigned to the feature of which it is an artifact of. The yellow and blue sequences with a grey vertical line are spurious features. Finally, taxonomic assignment is performed as part of feature annotation. Spurious features can be assigned to the wrong organism, yellow with grey line, or be unassigned, blue with grey line."}
+```{r measurementProcess, echo = FALSE, fig.cap = "Diagram of the 16S rRNA marker gene survey measurement process for a simplified example study comparing case and control treatment groups. During _Sample Collection_, samples are obtained from study participants. Colored boxes, representing the collected samples, contains the true microbial community composition indicated by cartoon microbial cells. For the cartoon cells, cell walls and 16S rRNA sequence (grey oval with colored bar) mean biologically relevant units. DNA extraction is used to isolate DNA from the cellular material, and extraction efficiency can vary by cell wall. Extraction efficiency differences are indicated by differences in the number of red, yellow, and blue bars in the DNA extract compared to the samples. PCR is used to target the 16S rRNA gene. Amplification efficiency biases result in differences in the proportion of red, yellow, and blue PCR products from the DNA extract. Unique sample barcodes added during PCR are indicated as teal and orange bars on left side of the PCR amplicons. Chimeras, a PCR artifact, are shown as half blue and yellow PCR products. Sequencing libraries are produced by _Pooling_ PCR products from the two samples. Uneven pooling can result in the under-representation of a sample (teal in this example) in the sequence dataset. The resulting libraries are sequenced, introducing additional artifacts indicated as grey reads, for failed sequences, and grey vertical lines for single base sequencing errors. Pre-processing assigns sequencing reads to samples using the unique barcodes and removes low-quality reads as well as filters chimeras. Feature inference is used to group the pre-processed reads into biologically relevant units. Sequencing errors can result in spurious features if not assigned to the source feature. The yellow and blue sequences with a grey vertical line are spurious features. Finally, taxonomic assignment is performed as part of feature annotation. Spurious features can be assigned to the wrong organism, yellow bar with grey line, or be unassigned, blue bar with grey line."}
 knitr::include_graphics("measurement_process_draft.png")
 ```
 
-```{r cause-effect, echo=FALSE, fig.cap = "Cause-effect diagram for the 16S rRNA sequencing measurement process. Causes of bias and variability are indicated as branches, e.g. cell type, and different sources of error are indicated by branch labels, e.g. storage conditions."}
+```{r cause-effect, echo=FALSE, fig.cap = "Cause-effect diagram for the 16S rRNA sequencing measurement process. Causes of bias and variability are indicated as branches, e.g., cell type, and different sources of error are indicated by branch labels, e.g., storage conditions."}
 cell_bias <- c("Storage","DNA extraction")
 amp_bias <- c("PCR Primers", "Cycling Conditions")
 seq_error <- c("Polymerase","Seq Rxn","Rxn Monitoring","Base Calling")
@@ -32,14 +32,14 @@ knitr::include_graphics("downstream_analysis.png")
 ## Measurement Process
 
 The 16S rRNA marker-gene survey measurement process includes a number of laboratory and computational steps (Fig. \@ref(fig:measurementProcess)).
-In this section I will provide an overview of the measurement process, and highlight major known sources of error (Fig. \@ref(fig:cause-effect)).
+In this section, I will provide an overview of the measurement process, and highlight significant known sources of error (Fig. \@ref(fig:cause-effect)).
 See @Goodrich2014 for a review of 16S rRNA marker-gene survey measurement process and general recommendations for conducting microbiome experiments.
 
 The 16S rRNA gene is used for marker-gene surveys as it is universally found in all prokaryotic organisms, including both bacteria and archaea.
 The gene contains hypervariable and conserved regions.
 The conserved regions allow for the use of PCR primers which can amplify the 16S rRNA gene from diverse taxonomic groups [@Martinez-Porchas2017-pi;@klindworth2012evaluation].
-Whereas the hypervariable regions allow for genus and sometime species level taxonomic classification.
-Additionally, as the 16S rRNA gene is well studied there several extensive well curated databases, e.g. SILVA, RDP, and Greengenes [@quast2012silva;@McDonald2012-ro;@Cole2014].
+Whereas hypervariable regions, allow genus and sometime species-level taxonomic classification.
+Additionally, as the 16S rRNA gene is well studied there several extensive well-curated databases, e.g. SILVA, RDP, and Greengenes [@quast2012silva;@McDonald2012-ro;@Cole2014].
 There are drawbacks to using the 16S rRNA gene as well.
 Due to the conserved nature of the gene, sequences cannot be used for strain level taxonomic classification required for some applications, such as pathogen detection [@janda200716s].
 Additionally, the 16S rRNA is a multicopy gene that is known to be horizontally transferred between organisms and, as a result, the within-genome 16S rRNA gene copy diversity can be greater than the between-genome diversity for some genera [@pei2010diversity].
@@ -53,7 +53,7 @@ Finally, the normalized PCR products are pooled and sequenced.
 Preferential DNA extraction and PCR amplification are two of the largest sources of bias in the measurement process.
 Other sources of error introduced at this point include PCR artifacts such as amplification errors (point mutations) and chimeras, sequence contaminants, and sequencing errors.
 Computational methods correct for PCR artifacts, contaminant removal, and sequencing error correction.
-Currently there are no computational or laboratory methods to correct for preferential extraction or amplification.
+Currently, there are no computational or laboratory methods to correct for preferential extraction or amplification.
 
 
 Computational methods, collectively referred to as the bioinformatic pipeline, convert raw sequence data into an annotated count table for use in downstream analysis.
@@ -69,8 +69,8 @@ The annotated count table is then used in feature-level and community level down
 Differential abundance is the most commonly used feature-level downstream analysis.
 Differential abundance is used to estimate the log fold-change in feature relative abundance between treatments.
 Alpha and beta diversity analyses are the most commonly used type of community analyses.
-Alpha-diversity metrics are numeric summaries of individual samples, and include richness, evenness, and phylogenetic diversity metrics.
-Beta-diversity is a measure of sample similarity, and can be used to compare feature presence-absence or incorporate relative abundance and phylogenetic relatedness.
+Alpha-diversity metrics are numeric summaries of individual samples, including richness, evenness, and phylogenetic diversity metrics.
+Beta-diversity is a measure of sample similarity and is used to compare feature presence-absence or incorporate relative abundance and phylogenetic relatedness.
 
 ## Feature Inference and Normalization
 
@@ -79,15 +79,15 @@ The feature inference process should maximize the number of features representin
 The two primary types of feature inference methods are distance-based clustering and sequence inference.
 
 
-Distance based feature inference methods cluster sequences based on defined similarity thresholds.
-These clustering thresholds have some biological and sequencing error basis (e.g. 99% species level, 97% genus level, 1% error rate).
+Distance-based feature inference methods cluster sequences based on defined similarity thresholds.
+These clustering thresholds have some biological and sequencing error basis (e.g., 99% species level, 97% genus level, 1% error rate).
 Though taxonomic variability in 16S rRNA sequence diversity [@pei2010diversity], and sequencing errors [@Huse2010;@Schirmer2015;@Amore2016] challenges the validity of these values [@edgar2017updating].
-There are three approaches to distance based clustering, _de novo_, closed-reference, and open-reference.
-For _de novo_ clustering the pre-processed sequences are clustered based on the desired threshold.
+There are three approaches to distance-based clustering, _de novo_, closed-reference, and open-reference.
+For _de novo_ clustering, the pre-processed sequences are clustered based on the desired threshold.
 For closed-reference clustering, the sequences are assigned to reference sequences based on the defined similarity threshold.
 The reference sequences are sequences from a reference database that were previously clustered at the desired threshold.
-Open-reference clustering, combines _de novo_ and closed-reference clustering.
-Reads are first clustered using closed-reference clustering, and then reads that are not assigned to reference clusters are clustered _de novo_.
+Open-reference clustering combines _de novo_ and closed-reference clustering.
+Reads are first clustered using closed-reference clustering then reads not assigned to reference clusters are clustered _de novo_.
 A limitation of distance-based feature inference methods is the use of a defined similarity threshold.
 Sequence inference methods were developed to avoid having to define such thresholds.
 
@@ -109,11 +109,11 @@ Normalization methods minimize biases due to differences in the total feature ab
 Variability in total feature abundance is due to differences in the number of reads generated per sample, and the proportion of sequences passing quality filtering.
 There are two types of normalization methods rarefaction and scaling.
 Rarefaction has its roots in ecology, where it is used to normalize sampling intensity per survey area [@Gotelli2001;@Hughes2005].
-To rarify counts, individual sample counts are randomly subsampled, without replacement, to a user defined level and samples with total abundance values less than the rarefaction level are dropped.
-Scaling methods normalize count table values by sample specific normalization factors.
+To rarify counts, individual sample counts are randomly subsampled, without replacement, to a user-defined level and samples with total abundance values less than the rarefaction level are dropped.
+Scaling methods normalize count table values by sample-specific normalization factors.
 For total sum scaling (TSS), and cumulative sum scaling (CSS), sample counts are divided by the sum of feature counts to a defined abundance percentile, 0.75 for CSS, and total abundance for TSS (proportions) [@paulson2013differential].
 Other commonly used normalization methods include relative log expression (RLE), trimmed mean of M values (TMM), and upper quartile normalization [@Robinson2010;@McCarthy2012].
-These methods were originally developed for normalizing microarray and RNAseq data but have been successfully used to normalize 16S rRNA marker-gene survey data [@McMurdie2014].
+These methods were developed for normalizing microarray and RNAseq data but have been successfully used to normalize 16S rRNA marker-gene survey data [@McMurdie2014].
 
 
 ## Measurement Assessment
@@ -125,7 +125,7 @@ There are four parts to measurement assessment methods development -
 (4) identify appropriate data and metrics for the assessment.
 
 
-When developing an assessment method, one needs to first determine what part of the measurement process one is interested in evaluating.
+When developing an assessment method, one first needs to determine what part of the measurement process one is interested in evaluating.
 Assessments can compare the performance of different methods used in individual steps of the measurement process, for example, DNA extraction for PCR.
 Part of the measurement process, such as the computational methods or laboratory components.
 Alternatively, one can assess the measurement process as a whole.
@@ -134,13 +134,13 @@ The part of the measurement process being evaluated defines the experimental des
 
 Next, one must determine the type of measurement assessment.
 Each assessment type can be used to evaluate part of or the measurement process as a whole.
-The first assessment type is measurement process performance, or how well observed values agree with expected results.
+The first assessment type is measurement process performance, or how well-observed values agree with expected results.
 For example, to evaluate sequencing error rates @Schirmer2015 used a mock community of 59 strains (49 bacteria and 10 archaea).
 The impact of different laboratory protocols and pre-processing methods were evaluated based on error rate reduction.
 An assessment can also evaluate the impact of using different protocols and computational methods on downstream analysis.
 For example, to evaluate the performance of different normalization methods on differential estimates, @McMurdie2014 simulated feature differential abundances by perturbing count table values to have defined effect sizes between treatment and control conditions.
 The third assessment type evaluates measurement repeatability and reproducibility.
-Interlaboratory studies are an example of this type of assessment where multiple laboratories process the a set of samples or dataset using either the same or different protocols.
+Interlaboratory studies are an example of this type of assessment where multiple laboratories process the set of samples or dataset using either the same or different protocols.
 The microbiome quality control (MBQC) is an example of this assessment type [@Sinha2017-ew].
 For MBQC, sets of replicate samples were sent to the participating laboratories for sequencing.
 The resulting sequencing data were made available for the participants, as well as others, to process using different computational methods.
@@ -148,23 +148,23 @@ The resulting sequencing data were made available for the participants, as well 
 
 The next step in measurement assessment method development is defining the measurand.
 The measurand is the observed value being quantified.
-For marker-gene survey analysis there are multiple measurand definitions.
-The measurand can be defined based on the downstream analysis, e.g. log fold-change for differential abundance analysis, or diversity metric for alpha and beta diversity analysis.
+For marker-gene survey analysis, there are multiple measurand definitions.
+The measurand can be defined based on the downstream analysis, e.g., log fold-change for differential abundance analysis or diversity metric for alpha and beta diversity analysis.
 The measurands can also be more general, such as count table values or feature DNA sequence.
 The measurement assessment is dependent on the measurand definition.
 Once the measurand is defined, appropriate data and metrics can be selected for use in measurement assessment.
 
 
-The primary data types used in marker-gene survey measurement assessment include, _in-silico_ data, mock communities, and technical replicates.
+The primary data types used in marker-gene survey measurement assessment include _in-silico_ data, mock communities, and technical replicates.
 Different parts of the measurement process and measurands can be assessed with different data types.
-_in-silico_ data, either simulated sequence data, or count tables, can be used to assess computational methods and downstream analysis.
+_in-silico_ data, either simulated sequence data or count tables, can be used to assess computational methods and downstream analysis.
 Mock communities, either mixtures of DNA or cells, can be used to assess laboratory procedures, as well as computational methods.
 Technical replicates are used to assess laboratory and computational method repeatability.
 Once the measurand is defined, and appropriate data for assessment is identified, assessment is performed by comparing expected values to observed values.
 
 
 Metrics used for assessment are dependent on the statistical properties of the measurand.
-For quantitative measurands, such as count table values, error rate (difference between the expected and observed values, normalized by the expected value) is commonly used.
+For quantitative measurands, such as count table values, error rate (the difference between the expected and observed values, normalized by the expected value) is commonly used.
 For evaluating the linear relationship between observed and expected values for a range of quantitative values, a linear model can be used to estimate the overall agreement, $R^2$, and whether the relationship is 1-to-1, model slope.
 Another metric for quantitative measurands, is signal to noise ratio, for example, with beta diversity metrics, the ratio for beta diversity between treatments and technical replicates.
 For qualitative measures, such as feature presence-absence, standard truth table metrics, such as sensitivity and specificity can be used.
@@ -173,10 +173,10 @@ Similarly, area under the curve (AUC) and receiver operating characteristics (RO
 
 ## Assessment using Mixtures of Environmental Samples
 Limitations to using environmental samples and mock communities for measurement assessment can be addressed by using mixtures of environmental samples.
-Mixtures of environmental samples provide the complexity of real data in terms of feature diversity and dynamic range with expected values for comparison.
+Mixtures of environmental samples provide the complexity of real data regarding feature diversity and dynamic range with expected values for comparison.
 Mixtures of environmental samples have previously been used to evaluate microarray and RNAseq methods [@irizarry2003exploration;@thompson2005use;@pine2011adaptable;@parsons2015using].
 When used to assess marker-gene surveys, mixtures of environmental samples can be used to assess count table accuracy, differential abundance, and beta diversity.
-Simulated mixtures of environmental samples (simulated count tables) have previously been used to evaluate deferentially abundance features and beta  [@McMurdie2014].
+Simulated mixtures of environmental samples (simulated count tables) have previously been used to evaluate deferentially abundant features and beta diversity  [@McMurdie2014].
 
 
 A limitation to using mixtures of environmental samples is the uncertainty in the expected values.
