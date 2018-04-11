@@ -29,4 +29,54 @@ Dissertation directed by: & {\large  Professor Hector Corrada Bravo} \\
 \renewcommand{\baselinestretch}{2}
 \large \normalsize
 
-Abstract Text
+Microbial communities play a fundamental role in environmental and human health.
+Targeted sequencing of the 16S rRNA gene, 16S rRNA marker-gene surveys, is used to measure and thus characterize these communities.
+The 16S rRNA marker-gene survey measurement process includes a number of molecular laboratory and computational steps.
+A rigorous measurement assessment framework can evaluate measurement method performance, in turn improving the validity of marker-gene survey study conclusions.
+In this dissertation, I present a novel framework and mixture dataset for assessing 16S rRNA marker-gene survey bioinformatic methods.
+Additionally, I developed software to facilitate working with 16S rRNA reference sequence databases and 16S rRNA marker-gene survey feature data.
+Computational steps, collectively referred to as bioinformatic pipelines, combine multiple algorithms to convert raw sequence data into a count table which is subsequently used to test biological hypotheses.
+Algorithm choice and parameters can significantly impact pipeline results.
+
+% Microbial communities play a fundamental role in environmental and human health.
+% Targeted sequencing of the 16S rRNA gene, 16S rRNA marker-gene surveys, is used to measure and thus characterize these  communities.
+% The 16S rRNA marker-gene survey measurement process includes a number of molecular laboratory and computational steps.
+% The 16S rRNA sequence generation process introduces biases such as sequence artifacts and sample to sample variation.
+% Computational methods including bioinformatic pipelines and normalization methods are used to correct for these biases and generate count tables.
+% The resulting count table, matrix with feature and sample abundance information, is used in downstream analysis such as differential abundance testing and beta diversity.
+% Downstream analysis accuracy is dependent on how well computational steps account for biases in the measurement process.
+% A rigorus measurement assessment framework can evaluate how well computational methods abount for the biases in turn improving the validity of marker-gene survey study conclusions.
+%
+% Current methods for assessing the 16S rRNA measurement process include using mock communities, simulated data, and technical replicates.
+% Mock communities are cells or DNA from individual organisms mixed at known proportions.
+% As the orgnaismal composition of the sample is known mock community datasets can be used to evaluate measurement accuracy.
+% However, the samples lack of commplexity of environmental samples in terms of organismal diversity and relative abundance dynamic range.
+% Simulated sequence data and count tables are also used assess 16S rRNA marker-gene survey methods.
+% While simulated data can reflect the complexity of real samples they do not recapitulate the error profile of real data.
+% Finally, as technical replicates are generated from real samples they have the appropriate complexity and error profile, but do not have an expected value for evaluating measurement accuracy.
+%
+%
+% The 16S rRNA marker-gene survey assessment framework present here provides novel methods for evaluating count table abundance values, differential abundance estimates, and beta diversity.
+% The assessment framework employs a novel dataset developed specifically for this assessment framework using mixtures of environmental samples.
+% Mixtures of environmental samples provide the appropriate level of complexity and error profile as well as expected values for use in measurement assessment.
+% The mixture dataset followed a two-sample titration mixture design using DNA extracts from samples from vaccine trial participants collected before and after exposure to pathogenic \textit{Echerichia coli}.
+% The dataset includes multiple levels of technical replication, PCR assay, sequencing library, and sequencing run for assessing measurement dispersion.
+%
+%
+% Movel assessment methods were developed for assessing the quantitative and qualitative characteristics of count tables generated using different bioinformatic pipelines.
+% Qualitative assessment results indicated that count tables generated using different bioinformatic pipelines had higher rates of false negative and false positive features.
+% Quantitative assessment of count table relative abundance values and differential abundance estimates indicate consistently high overall global performance between pipelines.
+% A feature-level analysis of relative and differential abundance estimates identified a number of outlier features with performance inconsistent with the expected values.
+% Feature characteristics such as overall relative abundance, differential abundance between unmixed samples, or GC content could not be correlated with outlier features.
+% Additionally, outlier features were not specific to any taxonomy, or phylogenetic clade.
+% These results indicate a potential unknown feature specific measurement bias.
+%
+%
+% The impact of sequencing data quality on different pipelines and normalization methods was assessed for beta diversity.
+% Beta diversity is used in community ecology, and is a measures sample pairwise similarity.
+% The assessment evaluated beta diversity PCR replicate repeatability, signal-to-ratio, and variation due to biological and technical factors.
+% Pipeline robustness to low quality data varied as some pipelines failed with the low quality data.
+% Normalization methods improved assessment results, though some normalization methods performed worse than unnormalized data.
+% The assessment results indicate that identifying the appropriate pipeline and normalization method is critical to successful beta diversity analysis.
+%
+% metagenomeFeatures
