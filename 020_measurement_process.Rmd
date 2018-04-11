@@ -166,7 +166,7 @@ Once the measurand is defined, and appropriate data for assessment is identified
 
 Metrics used for assessment are dependent on the statistical properties of the measurand.
 For quantitative measurands, such as count table values, error rate (the difference between the expected and observed values, normalized by the expected value) is commonly used.
-For evaluating the linear relationship between observed and expected values for a range of quantitative values, a linear model can be used to estimate the overall agreement, $R^2$, and whether the relationship is 1-to-1, model slope.
+For evaluating the linear relationship between observed and expected values a linear model can be used to estimate the overall agreement, $R^2$, and whether the relationship is 1-to-1, model slope.
 Another metric for quantitative measurands, is signal to noise ratio, for example, with beta diversity metrics, the ratio for beta diversity between treatments and technical replicates.
 For qualitative measures, such as feature presence-absence, standard truth table metrics, such as sensitivity and specificity can be used.
 Similarly, area under the curve (AUC) and receiver operating characteristics (ROC) curves can be used to evaluate qualitative performance for a set of observed values.
@@ -183,7 +183,7 @@ Simulated mixtures of environmental samples (simulated count tables) have previo
 A limitation to using mixtures of environmental samples is the uncertainty in the expected values.
 The expected value estimates are based on information from the unmixed samples and the mixture design.
 Measurement values obtained for the unmixed samples are generally obtained using the same measurement process being assessed, and therefore, the measurement uncertainty may not be well understood.
-Using the same measurement process and technical replicates to obtain values for the unmixed samples allows for the quantification of the measurement uncertainty but provides no information about potential measurement biases.
+Using the same measurement process and technical replicates allows for the quantification of the measurement uncertainty, but provides no information about potential measurement biases.
 In addition to uncertainty in the unmixed sample values, there may be uncertainty in the mixture design.
 For RNAseq studies, since the sequencing assay targets mRNA, the proportion of mRNA in the RNA extract needs to be accounted for in the mixture equation [@parsons2015using].
 Similarly for 16S rRNA marker-gene surveys, as the PCR assay targets prokaryotic DNA, the proportion of prokaryotic DNA in the sample should be characterized and taken into consideration.
