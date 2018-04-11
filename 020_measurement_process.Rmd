@@ -24,7 +24,7 @@ cause.and.effect(
 ```
 
 
-```{r downstreamAnalysis, echo = FALSE, fig.cap = "Diagram of 16S rRNA marker gene survey differential abundance and biological diversity downstream analysis methods. Differential abundance is a row-wise operation comparing feature abundance between treatment conditions with log fold-change (logFC) estimates calculated for each feature. Alpha (\\alpha) diversity is a column-wise operation where a single value is calculated per sample. Beta (\\beta) diversity is a row- and column-wise operation, with a single value calculated for each sample pair, using paired feature information."}
+```{r downstreamAnalysis, echo = FALSE, fig.cap = "Diagram of 16S rRNA marker gene survey differential abundance and biological diversity downstream analysis methods. Differential abundance is a row-wise operation comparing feature abundance between treatment conditions with log fold-change (logFC) estimates calculated for each feature. Alpha ($\\alpha$) diversity is a column-wise operation where a single value is calculated per sample. Beta ($\\beta$) diversity is a row- and column-wise operation, with a single value calculated for each sample pair, using paired feature information."}
 knitr::include_graphics("downstream_analysis.png")
 ```
 
