@@ -1,4 +1,4 @@
-# Measurement Process and Assessment.
+# Measurement Process and Assessment. {#measurement-process-assessment}
 ```{r measurementProcessSetUp, echo = FALSE, message = FALSE, warning = FALSE}
 library(qcc)
 ```
@@ -29,7 +29,7 @@ knitr::include_graphics("downstream_analysis.png")
 ```
 
 
-## Measurement Process
+## Measurement Process {#measurement-process}
 
 The 16S rRNA marker-gene survey measurement process includes a number of laboratory and computational steps (Fig. \@ref(fig:measurementProcess)).
 In this section, I will provide an overview of the measurement process, and highlight significant known sources of error (Fig. \@ref(fig:cause-effect)).
@@ -72,7 +72,7 @@ Alpha and beta diversity analyses are the most commonly used type of community a
 Alpha-diversity metrics are numeric summaries of individual samples, including richness, evenness, and phylogenetic diversity metrics.
 Beta-diversity is a measure of sample similarity and is used to compare feature presence-absence or incorporate relative abundance and phylogenetic relatedness.
 
-## Feature Inference and Normalization
+## Feature Inference and Normalization {#feature-inference-normalization}
 
 Feature inference is used to group sequences into features representing biologically relevant units.
 The feature inference process should maximize the number of features representing true sequences while minimizing the number of features representing sequence artifacts.
@@ -80,8 +80,8 @@ The two primary types of feature inference methods are distance-based clustering
 
 
 Distance-based feature inference methods cluster sequences based on defined similarity thresholds.
-These clustering thresholds have some biological and sequencing error basis (e.g., 99% species level, 97% genus level, 1% error rate).
-Though taxonomic variability in 16S rRNA sequence diversity [@pei2010diversity], and sequencing errors [@Huse2010;@Schirmer2015;@Amore2016] challenges the validity of these values [@edgar2017updating].
+These clustering thresholds are based on taxonomic group sequence diversity and sequencing error (e.g., 99% species level, 97% genus level, 1% error rate).
+Though studies characterizing within species and genera 16S rRNA sequence diversity [@pei2010diversity], and sequencing error rates [@Huse2010;@Schirmer2015;@Amore2016] challenge the validity of these values [@edgar2017updating].
 There are three approaches to distance-based clustering, _de novo_, closed-reference, and open-reference.
 For _de novo_ clustering, the pre-processed sequences are clustered based on the desired threshold.
 For closed-reference clustering, the sequences are assigned to reference sequences based on the defined similarity threshold.
@@ -94,7 +94,8 @@ Sequence inference methods were developed to avoid having to define such thresho
 
 Sequence inference methods, another type of features inference, use statistical models or heuristics to infer the true biological sequence from which a read was generated.
 By inferring the true biological sequence, this method avoids having to define an arbitrary threshold for grouping sequences.
-DADA2, the first published sequence inference method, uses a probabilistic model and an expectation-maximization algorithm to test whether less abundant sequences are derived from higher abundance sequences, and estimates the sequence error profile [@callahan2016dada2].
+DADA2 was first published sequence inference method.
+It uses a probabilistic model and an expectation-maximization algorithm to test whether less abundant sequences are derived from higher abundance sequences [@callahan2016dada2].
 DADA2 is the only method to take into account base quality scores.
 DADA2 is computationally expensive on a per sample basis, though scalable as individual samples can be run in parallel.
 Other sequence inference methods that use heuristics to reduce the computational cost have been developed.
@@ -126,8 +127,8 @@ There are four parts to measurement assessment methods development -
 
 
 When developing an assessment method, one first needs to determine what part of the measurement process one is interested in evaluating.
-Assessments can compare the performance of different methods used in individual steps of the measurement process, for example, DNA extraction for PCR.
-Part of the measurement process, such as the computational methods or laboratory components.
+Assessments can compare the performance of different methods used in individual steps of the measurement process, for example, DNA extraction or PCR.
+Assessment methods can also evalute part of the measurement process, such as the computational methods or laboratory components.
 Alternatively, one can assess the measurement process as a whole.
 The part of the measurement process being evaluated defines the experimental design used to generate the assessment dataset.
 
@@ -135,7 +136,7 @@ The part of the measurement process being evaluated defines the experimental des
 Next, one must determine the type of measurement assessment.
 Each assessment type can be used to evaluate part of or the measurement process as a whole.
 The first assessment type is measurement process performance, or how well-observed values agree with expected results.
-For example, to evaluate sequencing error rates @Schirmer2015 used a mock community of 59 strains (49 bacteria and 10 archaea).
+To evaluate sequencing error rates @Schirmer2015 used a mock community of 59 strains and compared the observed sequence data to 16S rRNA sequences from genome sequences for the 59 strains.
 The impact of different laboratory protocols and pre-processing methods were evaluated based on error rate reduction.
 An assessment can also evaluate the impact of using different protocols and computational methods on downstream analysis.
 For example, to evaluate the performance of different normalization methods on differential estimates, @McMurdie2014 simulated feature differential abundances by perturbing count table values to have defined effect sizes between treatment and control conditions.
