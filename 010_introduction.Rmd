@@ -1,21 +1,21 @@
 # Introduction
 Microorganisms, the unseen majority, play an important role in environmental and human health.
-Globally there are an estimated $4$ to $6 \times 10^{30}$ prokaryotic cells on earth [@whitman1998prokaryotes; @kallmeyer2012global], which drive processes such as the carbon and nitrogen cycle [@whitman1998prokaryotes].
+Globally there are an estimated $4$ to $6 \times 10^{30}$ prokaryotic cells on earth [@whitman1998prokaryotes; @kallmeyer2012global] and drive processes such as the carbon and nitrogen cycle [@whitman1998prokaryotes].
 In the human body bacterial cells are as abundant as human cells [@sender2016revised] and aid in fundamental processes such as digestion [@cho2012human; @young2017role].
 The human gut microbiome has been linked to numerous diseases ranging from inflammatory bowel disease to autism [@cho2012human; @strati2017new].
 Biotherapeutics, probiotics developed to treat disease, have the potential to revolutionize medicine and treat microbiome-linked diseases [@young2017role].
-For example fecal microbiome transplants have been successfully used to treat recalcitrant _Clostridium dificile_ infections [@rao2015fecal].
+For example, fecal microbiome transplants have been successfully used to treat recalcitrant _Clostridium dificile_ infections [@rao2015fecal].
 
 
-Recent advances in DNA sequencing technology have changed how we measure and thus study microbiomes.
-The two of the most commonly used methods to characterize microbial communities are 16S rRNA marker-gene surveys and shotgun metagenomics [@kuczynski2012experimental].
+Recent advances in deoxyribonucleic acid (DNA) sequencing technology have changed how we measure, and thus study, microbiomes.
+The two of the most commonly used methods to characterize microbial communities are shotgun metagenomics and 16S ribosomal ribonucleic acid (rRNA) marker-gene surveys  [@kuczynski2012experimental].
 Shotgun metagenomics is the random sequencing of all genomic material in a sample.
 16S rRNA marker-gene surveys use targeted sequencing to characterize  community taxonomic composition.
-There are benefits and disadvantage to both of these methods [@clooney2016comparing].
-Shotgun sequencing is useful for functional information and strain-level analysis whereas marker-gene sequencing provides a more complete view of the community composition.
+There are benefits and disadvantage to both methods [@clooney2016comparing].
+Shotgun sequencing is useful for functional information and strain-level analysis, whereas marker-gene sequencing provides a more complete view of the community composition.
 Additionally, shotgun sequencing is significantly more expensive than marker-gene surveys and is therefore cost prohibitive for large cohort and global studies, such as the human microbiome project [@turnbaugh2007human] and  earth microbiome project [@Thompson2017].
 The focus of this dissertation is assessing 16S rRNA marker-gene survey methods.
-However, the apporaches presented are applicable to assessing shotgun metagenomic methods as well.
+However, the approaches presented are applicable to assessing shotgun metagenomic methods as well.
 
 
 ## 16S rRNA Marker-Gene Surveys
@@ -26,7 +26,7 @@ Ecological diversity metrics are used to characterize microbial community richne
 
 Marker gene survey data is collected through a complex multi-step measurement process [@Goodrich2014].
 The measurement process consists of numerous laboratory and computational steps.
-The laboratory steps include DNA extraction, PCR, library prep, and sequencing.
+The laboratory steps include DNA extraction, polymerase chain reaction (PCR), library preparation, and sequencing.
 The computational steps include pre-processing, feature inference, feature annotation, and normalization.
 See Sections \@ref(measurement-process) and \@ref(feature-inference-and-normalization) for a detailed description of the measurement processes.
 Limitations in our understanding of the measurement process impede microbiome research.
@@ -36,15 +36,15 @@ Limitations in our understanding of the measurement process impede microbiome re
 Measurement assessment is used to characterize and validate the measurement process and as a result advance microbiome research.
 Results from marker-gene surveys indicate a potential connection between obesity and the gut microbiome [@ley2006microbial].
 However, a meta-analysis combining data from multiple studies only found a weak association between obesity and the gut microbiome [@sze2016looking].
-Given a well characterized measurement process we can better evaluate study conclusions.
+We can better evaluate study conclusion with a well characterized measurement process.
 In turn, reducing the identification of spurious associations, such as the ones identified by the obesity studies.
 
 
-A key component of measurement assessment is data with an expected value.
-Common sources of data used to assess marker-gene surveys includes, computer simulated data (_in silco_), mixtures of DNA or cells from individual organisms (mock communities), and technical replicates.
-_In silico_ data and mock communities provide expected values for use in assessment but do not recapitulate the complexity of environmental samples or the error profile of real sequencing data.
+A key component of measurement assessment are data with an expected value.
+Common sources of data used to assess marker-gene surveys include, computer simulated data (_in silco_), mixtures of DNA or cells from individual organisms (mock communities), and technical replicates.
+_In silico_ data and mock communities provide expected values for use in assessment, but do not recapitulate the complexity of environmental samples or the error profile of real sequencing data.
 Without an expected value technical replicates are only suitable for method comparison.
-As part of this disseration I will introduce a new data type, mixtures of environmental samples, which provide the complexity of real data and an expected value for use in assessment.
+As part of this dissertation I will introduce a new data type, mixtures of environmental samples, which provide the complexity of real data and an expected value for use in assessment.
 
 ## Dissertation Summary
 In this dissertation I will present a framework for 16S rRNA marker-gene survey measurement assessment using a novel mixture dataset along with software to facilitate working with 16S rRNA marker-gene survey data.
@@ -59,7 +59,7 @@ The assessment framework and software along with the assessment study results pr
 __ADD AFTER REVISING__
 
 ### Diversity Assessment
-Biases introduced during the marker-gene survey measurement process can impact downstream analysis such as beta-diversity.
+Biases introduced during the marker-gene survey measurement process can impact downstream analyses such as beta-diversity.
 Bioinformatic pipelines and normalization methods are often used to reduce biases introduced during the marker-gene survey measurement process [@Goodrich2014; @Kong2017].
 
 
@@ -69,7 +69,7 @@ Bioinformatic pipelines also use clustering or sequence inference techniques to 
 Standard clustering methods include _de novo_ clustering based on pairwise sequence similarities [@Schloss2005] and closed reference clustering of reads against a reference database [@edgar2010search].
 Open reference clustering is a combination of the two, first applying a closed reference approach, followed by _de novo_ clustering of reads that did not map to a reference [@Rideout2014].
 Sequence inference methods use statistical models and algorithms to group sequences independent of sequence similarity but based on the probability that a lower abundant sequence is an artifact originating from more highly abundant sequence, independent of sequence similarity [@callahan2016dada2; @Amir2017].
-The resulting features, OTUs (operational taxonomic units) for clustering methods and SVs (sequence variants) for sequence inference methods, have different characteristics because the different methods vary in their ability to detect and remove errors, while retaining true biological sequences.
+The resulting features, operational taxonomic units (OTUs) for clustering methods, and sequence variants (SVs) for sequence inference methods, have different characteristics because the different methods vary in their ability to detect and remove errors, while retaining true biological sequences.
 
 
 Rarefaction and numeric normalization methods account for differences in sample total abundance caused by uneven sample pooling prior to sequencing and differences in sequencing run throughput.
@@ -83,7 +83,7 @@ Many studies have found these methods useful in normalizing marker-gene survey d
 
 
 Beta-diversity is calculated using a variety of metrics that can be grouped based on whether they account for phylogenetic distance and feature relative abundance.
-The UniFrac metric, was developed specifically for marker-gene survey data and incorporates phylogenetic relatedness by comparing the branch lengths of features that are unique to two communities [@Hamady2010].
+The UniFrac metric was developed specifically for marker-gene survey data, and incorporates phylogenetic relatedness by comparing the branch lengths of features that are unique to two communities [@Hamady2010].
 Unweighted UniFrac uses presence-absence information, whereas weighted UniFrac incorporates feature relative abundance.
 Taxonomic metrics do not consider relationship between features.
 The Bray-Curtis and Jaccard dissimilarity indices are examples of weighted and unweighted taxonomic metrics respectively, as they do not consider the phylogenetic relationship between features [@Bray1957; @Jaccard1912].
@@ -102,11 +102,11 @@ enabling assessment of how each pipeline and method performs on datasets of vary
 
 ### MetagenomeFeatures
 
-A key step in 16S rRNA marker-gene surveys is comparing representative sequences  to a reference database for taxonomic classification or phylogenetic placement [@nguyen2014tipp]. There are numerous 16S rRNA reference databases of which Greengenes, RDP, and SILVA are arguably the most commonly used [@desantis2006greengenes;@Cole2014;@quast2012silva;@McDonald2012-ro]..  Additionally, there are smaller system-specific databases such as HOMD for the human oral microbiome [@chen2010-dw;http://www.homd.org/] and soil reference database [@choi2017-hv]. System-specific databases can improve taxonomic assignments for microbial communities not well represented in the major databases ([@rohwer2017-fz].
+A key step in 16S rRNA marker-gene surveys is comparing representative sequences  to a reference database for taxonomic classification or phylogenetic placement [@nguyen2014tipp]. There are numerous 16S rRNA reference databases, of which Greengenes, Ribosomal Database Project (RDP), and SILVA are arguably the most commonly used [@desantis2006greengenes;@Cole2014;@quast2012silva;@McDonald2012-ro]..  Additionally, there are smaller system-specific databases such as Human Oral Microbiome Database (HOMD) for the human oral microbiome [@chen2010-dw;http://www.homd.org/] and soil reference database [@choi2017-hv]. System-specific databases can improve taxonomic assignments for microbial communities not well represented in the major databases ([@rohwer2017-fz].
 
-16S rRNA databases differ in the number and diversity of sequences, the taxonomic classification system, and the inclusion of intermediate ranks [@balvociute2017-su]. Databases format their data differently and use sequence identification systems unique to their database, challenging membership and composition comparisons. For example, Yang et al. @yang2016sensitivity used the SILVA database to evaluate how different 16S rRNA variable regions impact phylogenetic analysis. Similarly, Martinez-Porchas et al. @Martinez-Porchas2017-pi also used the SILVA database to evaluate sequence similarity between 16S rRNA gene conserved regions. Differences in database formatting present a significant barrier to performing the same analysis using multiple databases. Additionally, taxonomic assignments can be database-dependent, providing further [@pettengill2017-jw]. To facilitate database comparisons RNACentral a resource combining non-coding RNA databases, provides unique identifiers for the sequences [@the_rnacentral_consortium2017-ai;http://rnacentral.org/].
+16S rRNA databases differ in the number, and diversity, of sequences, the taxonomic classification system, and the inclusion of intermediate ranks [@balvociute2017-su]. Databases format their data differently and use sequence identification systems unique to their database, challenging membership and composition comparisons. For example, Yang et al. @yang2016sensitivity used the SILVA database to evaluate how different 16S rRNA variable regions impact phylogenetic analysis. Similarly, Martinez-Porchas et al. @Martinez-Porchas2017-pi also used the SILVA database to evaluate sequence similarity between 16S rRNA gene conserved regions. Differences in database formatting present a significant barrier to performing the same analysis using multiple databases. Additionally, taxonomic assignments can be database-dependent, providing further [@pettengill2017-jw]. To facilitate database comparisons RNACentral a resource combining non-coding RNA databases, provides unique identifiers for the sequences [@the_rnacentral_consortium2017-ai;http://rnacentral.org/].
 
-We developed the R package _metagenomeFeatures_ for working with both 16S rRNA gene database and marker-gene survey feature data. _metagenomeFeatures_ provides a common data structure for working with 16S rRNA databases and marker-gene survey feature data. Additionally this package is the first step towards the development of a common data structure for use in analyzing metagenomic and marker-gene survey data using R bioconductor packages such as _phyloseq_ [@mcmurdie2013-ij] and _metagenomeSeq_ [@paulson2013-ew].
+We developed the R package _metagenomeFeatures_ for working with both 16S rRNA gene database and marker-gene survey feature data. _metagenomeFeatures_ provides a common data structure for working with 16S rRNA databases and marker-gene survey feature data. Additionally, this package is the first step towards the development of a common data structure for use in analyzing metagenomic and marker-gene survey data using R Bioconductor packages such as _phyloseq_ [@mcmurdie2013-ij] and _metagenomeSeq_ [@paulson2013-ew].
 
 
 <!-- *  Finally, I will present the development of an R Bioconductor packages for working with 16S rRNA reference databases and marker-gene survey feature data. -->
