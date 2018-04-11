@@ -10,7 +10,6 @@ link-citations: yes
 description: "Dissertation."
 ---
 
-```{r setup, include=FALSE}
-# knitr::opts_chunk$set(cache = TRUE)
+```{r dissSetup, include=FALSE}
+#knitr::opts_chunk$set(fig.env='quote')
 ```
-

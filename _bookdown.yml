@@ -1,5 +1,6 @@
 book_filename: "Dissertation"
 delete_merged_file: true
+toc-depth: 1
 language:
   ui:
     chapter_name: "Chapter "

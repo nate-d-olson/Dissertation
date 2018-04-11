@@ -1,3 +1,4 @@
 # Count Table Assessment {#count-table}
+Assessing 16S marker-gene survey data analysis methods using mixtures of human stool sample DNA extracts.
 
-## Preface
+<!-- ## Preface -->
