@@ -1,31 +1,63 @@
 # Conclusions
+For this dissertation, I developed a framework for assessing the 16S rRNA marker-gene survey measurement process.
+The framework utilizes novel statistical methods in conjunction with a mixture dataset.
+The statistical methods assess 16S rRNA marker-gene survey relative abundance, differential abundance, and beta diversity using information from the unmixed samples and mixture design.
+The mixture dataset was a two-sample titration series of vaccine trial DNA extracts.
+Additionally, I developed the R Bioconductor package, _metagenomeFeatures_ for working with 16S rRNA reference databases and marker-gene survey feature data.
 
-## Count Table
-This two-sample-titration dataset can be used to evaluate and characterize bioinformatic pipelines and clustering methods.
-The sequence dataset presented in this study can be processed with any 16S bioinformatic pipeline to generate a count table.
-Our quantitative and qualitative assessment can then be performed on the count table and the results compared to those obtained using the pipelines included in this study.
-Based on the results of our assessment the pipelines generate sets of features varying in total feature abundance, number of features per samples, and total features.
-The objective of any pipeline is to differentiate true biological sequences from artifacts of the measurement process.
-When determining which pipeline to use for a study, users should consider whether minimizing false positives (DADA2) or false negatives (Mothur) is more appropriate for their study objectives.
-When a sequencing dataset is processed using DADA2, the user can be more confident that an observed feature represents a member of the microbial community and not a measurement artifact.
-Pipeline parameter optimization could address DADA2 false-negative issue.
-For the Mothur and QIIME pipelines, prevalence filtering will reduce the number of false-positive features.
-Feature-level results for any 16S rRNA marker-gene survey should be interpreted with care, as the biases responsible for poor quantitative assessment are unknown.
-Addressing both of these issues requires advances in both the molecular biology and computational components of the measurement process.
+
+The _metagenomeFeatures_ package provides data structures and functions for working with 16S rRNA gene sequence reference databases and marker-gene survey feature data. The data structure provided by the `MgDb-class` in conjunction with the shared sequence identifier system developed by RNACentral facilitates comparisons between 16S rRNA databases. The `mgFeatures-class` provides the groundwork for the development of a common data structure for working with metagenomic and marker-gene sequence data in R which will increase interoperability between R packages developed for working with metagenomic sequence data. Additionally, while the data structures were developed for 16S rRNA gene sequence data they can be used for any marker-gene sequence data without modification and can be extended to work with shotgun metagenomic sequence data and databases.
+
+
+Using the assessment framework, I evaluated 16S rRNA marker-gene survey bioinformatic pipeline and normalization performance.
+Bioinformatic pipelines combine multiple algorithms converting raw sequence data into count tables which are subsequently used to test biological hypotheses.
+Algorithm choice and parameters can significantly impact pipeline results.
+The pipelines compared in this dissertation were optimized using mock communities and benchmarked against other methods based on similarity in beta-diversity results [@bokulich2016mockrobiota].
+The assessment framework and dataset presented here provide complementary methods for use in optimizing existing and benchmarking new pipelines and normalization methods.
+The mixture dataset can be processed with any bioinformatic pipeline that converts raw 16S rRNA sequencing data to a count table.
+The relative and differential abundance, as well as beta-diversity assessment, can be performed on the count table and the results compared to those obtained with the pipelines evaluated in this dissertation.
+Future work includes the development of an R Bioconductor package for employing our assessment framework, _metagenomeAssessment_.
+
+
+The work presented here has shown how a mixture dataset can be used to assess the marker-gene survey measurement process.
+Based on lessons learned from this dissertation new mixture datasets can be developed for further assessment of microbiome measurements.
+Additional 16S rRNA sequencing mixture datasets would serve as a complementary resource for the community.
+Based on the lessons learned from the development of our two-sample titration mixture dataset.
+Using samples with either better characterized prokaryotic DNA proportions or minimal non-prokaryotic DNA would reduce the expected value uncertainty.
+Also using samples with greater diversity to generate the mixtures would provide a larger set of features for use in assessment.
+As the mixture dataset was only processed using a single laboratory protocol, a set of mixture samples can be used as part of an interlaboratory study for further characterization of the measurement process repeatability and reproducibility.
+Finally, similarly, mixtures can be used to assess other microbiome measurement processes such as shotgun metagenomics, metatranscriptomics, and even non-nucleic acid measurements such as metaproteomics and metametabolomics.
+
+
+
+
+<!-- ## Count Table
+The two-sample-titration dataset developed for this dissertation can be used to evaluate and characterize bioinformatic pipelines and feature inference methods.
+Based on the count table assessment results, pipelines generate sets of features varying in total abundance, number of features per samples, and total features.
+The pipelines are used to differentiate true biological sequences from measurement process artifacts.
+Users should consider whether minimizing false positives or false negatives is more appropriate for their study objectives when determining which pipeline to use.
+DADA2 pipeline minimizes false positives, therefore users can be confident that an observed feature represents a member of the microbial community and not a measurement artifact.
+Whereas the Mothur pipeline minimizes false negatives, therefore a true microbial community member is likely present in the dataset, but a low abundance feature is more likely a measurement artifact than a low abundance DADA2 feature.
+Pipeline parameter optimization could reducde the DADA2 false-negative rate, at the risk of increasing the false-positive rate.
+For the Mothur and QIIME pipelines, prevalence filtering will reduce the number of false-positive features, while increasing false-negative features.
+Feature-level results for any 16S rRNA marker-gene survey should be interpreted with care, as the biases responsible for features with outlier feature-level relative and differential abudance assessment metrics are unknown.
 
 
 ## Diversity Assessment
-The results presented in this study can be used to help determine the appropriate bioinformatic pipeline and normalization method for a marker-gene survey beta diversity analysis.
-The six pipelines evaluated in this study varied in their ability to distinguish sequencing artifacts from true biological sequences and these differences impacted the PCR replicate beta diversity repeatability.
-Normalization can help improve repeatability, but sometimes at the cost of decreasing the differences in beta diversity for biological relative to technical factors.
-Based on our study results we found Mothur and DADA2 to be more robust to lower quality sequence datasets.
-Furthermore, normalization methods can improve our ability to detect true biological differences though normalization methods developed for gene expression methods may not be appropriate for marker-gene survey beta diversity analysis.
-
-Bioinformatic pipelines combine multiple algorithms to convert raw sequence data into a count table which is subsequently used to test biological hypotheses.
-Algorithm choice and parameters can significantly impact pipeline results.
-The pipelines compared in this study were optimized using mock communities and benchmarked against other methods based on similarity in beta-diversity results [@bokulich2016mockrobiota].
-The novel assessment framework and dataset presented here provides complementary methods for use in optimizing existing and benchmarking new pipelines and normalization methods.
+The diversity assessment results can be used to help determine the appropriate bioinformatic pipeline and normalization method for a marker-gene survey beta-diversity analysis.
+The six pipelines evaluated varied in their ability to distinguish sequencing artifacts from true biological sequences and these differences impacted PCR replicate beta diversity repeatability.
+Normalization can improve repeatability, but sometimes at the cost of decreasing differences in beta-diversity between biological factors relative to technical factors.
+Based on our assessment results we found Mothur and DADA2 to be more robust to lower quality sequence datasets.
+Furthermore, normalization methods can improve our ability to detect true biological differences.
+Though normalization methods developed for gene expression methods may not be appropriate for marker-gene survey beta diversity analysis.
 
 
 ## _metagenomeFeatures_
-The metagenomeFeatures package provides data structures and functions for working with 16S rRNA gene sequence reference databases and marker-gene survey feature data. The data structure provided by the `MgDb-class` in conjunction with the shared sequence identifier system developed by RNACentral facilitates comparisons between 16S rRNA databases. The `mgFeatures-class` provides the groundwork for the development of a common data structure for working with metagenomic and marker-gene sequence data in R which will increase interoperability between R packages developed for working with metagenomic sequence data. Additionally, while the data structures were developed for 16S rRNA gene sequence data they can be used for any marker-gene sequence data without modification and can be extended to work with shotgun metagenomic sequence data and databases.
+ -->
+
+
+<!-- ## Future Work -->
+
+<!-- Additionally, further characterization of the outlier features observed as part of our count table assessment will improve confidence in feature-level 16S rRNA marker-gene survey results as either methods can be developed for correct for the biases responsible for the outlier characteristics or they can be excluded from feature-level analysis.
+Characterizing outlier features will likely require advances in both the molecular biology and computational components of the measurement process.
+The beta-diversity assessment results provide further evidence for the need for statistically valid normalization methods for unweighted beta diversity metrics. -->
