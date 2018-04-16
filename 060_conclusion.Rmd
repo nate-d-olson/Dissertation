@@ -1,6 +1,8 @@
 # Conclusions
 For this dissertation, I developed a framework for assessing the 16S rRNA marker-gene survey measurement process.
-The framework utilizes novel statistical methods in conjunction with a mixture dataset.
+The framework utilizes novel statistical methods in conjunction with an assessment dataset specifically developed for this dissertation.
+I created mixtures of human gut microbiome samples and sequenced them in multiple laboratories and runs.
+Based on this experimental design I defined multiple measurement assessment metrics.
 The statistical methods assess 16S rRNA marker-gene survey relative abundance, differential abundance, and beta diversity using information from the unmixed samples and mixture design.
 The mixture dataset was a two-sample titration series of vaccine trial DNA extracts.
 Additionally, I developed the R Bioconductor package, _metagenomeFeatures_ for working with 16S rRNA reference databases and marker-gene survey feature data.
@@ -9,24 +11,24 @@ Additionally, I developed the R Bioconductor package, _metagenomeFeatures_ for w
 The _metagenomeFeatures_ package provides data structures and functions for working with 16S rRNA gene sequence reference databases and marker-gene survey feature data. The data structure provided by the `MgDb-class` in conjunction with the shared sequence identifier system developed by RNACentral facilitates comparisons between 16S rRNA databases. The `mgFeatures-class` provides the groundwork for the development of a common data structure for working with metagenomic and marker-gene sequence data in R which will increase interoperability between R packages developed for working with metagenomic sequence data. Additionally, while the data structures were developed for 16S rRNA gene sequence data they can be used for any marker-gene sequence data without modification and can be extended to work with shotgun metagenomic sequence data and databases.
 
 
+Based on lessons learned from this dissertation new mixture datasets can be developed for further microbiome measurement assessment.
+Additional 16S rRNA sequencing mixture datasets would serve as a complementary resource for the community.
+Using samples with either better characterized prokaryotic DNA proportions or minimal non-prokaryotic DNA would reduce the expected value uncertainty observed in this assessment.
+Also using samples with larger differences in microbial composition as titration endpoints to generate the mixtures would provide a more extensive set of features for assessment.
+As the mixtures were only processed using a single laboratory protocol (16S PCR through sequencing), mixture samples can be used as part of an interlaboratory study to further characterize the measurement process repeatability and reproducibility.
+Finally, mixtures can be used to assess other microbiome measurement processes such as shotgun metagenomics, metatranscriptomics, and even non-nucleic acid measurements such as metaproteomics and metametabolomics.
+
+
+The work presented here has shown how a mixture dataset can be used to assess the marker-gene survey measurement process.
 Using the assessment framework, I evaluated 16S rRNA marker-gene survey bioinformatic pipeline and normalization performance.
 Bioinformatic pipelines combine multiple algorithms converting raw sequence data into count tables which are subsequently used to test biological hypotheses.
 Algorithm choice and parameters can significantly impact pipeline results.
 The pipelines compared in this dissertation were optimized using mock communities and benchmarked against other methods based on similarity in beta-diversity results [@bokulich2016mockrobiota].
-The assessment framework and dataset presented here provide complementary methods for use in optimizing existing and benchmarking new pipelines and normalization methods.
+The assessment framework and dataset provide complementary methods for use in optimizing existing and benchmarking new pipelines and normalization methods.
 The mixture dataset can be processed with any bioinformatic pipeline that converts raw 16S rRNA sequencing data to a count table.
 The relative and differential abundance, as well as beta-diversity assessment, can be performed on the count table and the results compared to those obtained with the pipelines evaluated in this dissertation.
 Future work includes the development of an R Bioconductor package for employing our assessment framework, _metagenomeAssessment_.
 
-
-The work presented here has shown how a mixture dataset can be used to assess the marker-gene survey measurement process.
-Based on lessons learned from this dissertation new mixture datasets can be developed for further assessment of microbiome measurements.
-Additional 16S rRNA sequencing mixture datasets would serve as a complementary resource for the community.
-Based on the lessons learned from the development of our two-sample titration mixture dataset.
-Using samples with either better characterized prokaryotic DNA proportions or minimal non-prokaryotic DNA would reduce the expected value uncertainty.
-Also using samples with greater diversity to generate the mixtures would provide a larger set of features for use in assessment.
-As the mixture dataset was only processed using a single laboratory protocol, a set of mixture samples can be used as part of an interlaboratory study for further characterization of the measurement process repeatability and reproducibility.
-Finally, similarly, mixtures can be used to assess other microbiome measurement processes such as shotgun metagenomics, metatranscriptomics, and even non-nucleic acid measurements such as metaproteomics and metametabolomics.
 
 
 
