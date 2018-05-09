@@ -247,7 +247,7 @@ For example as the maximum within species pairwise distance for _P. marcerans_ i
 ```{r distHeatMap, fig.cap = "Pairwise distances between _Paenibacillus_ species (A) V12 and (B) V4 amplicon regions. Fill color indicates the mean pairwise sequence distance within and between species. The text indicates the maximum pairwise distance for within-species comparisons, values along the diagonal, and maximum pairwise distance for between species comparisons.", fig.height = 8}
 v12_heat <- v12_dist_anno_df %>%
     group_by(Keys_Species, Keys2_Species, group_comp) %>%
-    summarise(mean_dist = mean(distance),
+    summarise(mean_dist = mean(distance, na.rm = TRUE),
               max_dist = max(distance),
               min_dist = min(distance)) %>%
     mutate(lab_dist = if_else(group_comp == "within",
@@ -260,7 +260,7 @@ v12_heat <- v12_dist_anno_df %>%
                     y = Keys2_Species,
                     fill = mean_dist)) +
     geom_text(aes(x = Keys_Species, y = Keys2_Species, 
-                  label = round(lab_dist,2)), color = "white") +
+                  label = round(lab_dist,2)), size = 2, color = "white") +
     labs(x = "Species",y = "Species", fill = "Mean Dist") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = -45, hjust = -0.1))
@@ -281,7 +281,7 @@ v4_heat <- v4_dist_anno_df %>%
                     y = Keys2_Species,
                     fill = mean_dist)) +
     geom_text(aes(x = Keys_Species, y = Keys2_Species, 
-                  label = round(lab_dist,2)), color = "white") +
+                  label = round(lab_dist,2)), size = 2, color = "white") +
     labs(x = "Species",y = "Species", fill = "Mean Dist") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = -45, hjust = -0.1))
