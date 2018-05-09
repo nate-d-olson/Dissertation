@@ -5,7 +5,7 @@ In the human body, bacterial cells are as abundant as human cells [@sender2016re
 The human gut microbiome has been linked to numerous diseases ranging from inflammatory bowel disease to autism [@cho2012human; @strati2017new].
 Biotherapeutics, probiotics developed to treat disease, have the potential to revolutionize medicine and treat microbiome-linked diseases [@young2017role].
 For example, fecal microbiome transplants have been successfully used to treat recalcitrant _Clostridium dificile_ infections [@rao2015fecal].
-Accurate characterization of these microbial communities is critical to successful biotherapeutics development.
+Accurately characterizating microbial communities is critical to successful biotherapeutics development.
 
 
 Recent advances in deoxyribonucleic acid (DNA) sequencing technology has changed how we measure and thus study, microbiomes.
@@ -16,7 +16,7 @@ There are benefits and disadvantage to both methods [@clooney2016comparing].
 Shotgun sequencing is useful for functional information and strain-level analysis, whereas marker-gene sequencing provides a more complete view of the community composition.
 Additionally, shotgun sequencing is significantly more expensive than marker-gene surveys and is, therefore, cost prohibitive for large cohort and global studies, such as the human microbiome project [@turnbaugh2007human] and earth microbiome project [@Thompson2017].
 The focus of this dissertation is assessing 16S rRNA marker-gene survey methods.
-However, the approaches presented apply shotgun metagenomic method assessment as well.
+However, the approaches presented apply to shotgun metagenomic method assessment as well.
 
 
 ## 16S rRNA Marker-Gene Surveys
@@ -37,24 +37,33 @@ Limitations in our understanding of the measurement process impede microbiome re
 Measurement assessment is used to characterize and validate the measurement process and as a result, advance microbiome research.
 Results from marker-gene surveys indicate a potential connection between obesity and the gut microbiome [@ley2006microbial].
 However, a meta-analysis combining data from multiple studies only found a weak association between obesity and the gut microbiome [@sze2016looking].
-With a well-characterized measurement process we can better evaluate study conclusion.
-In turn, reducing the identification of spurious associations, such as the ones identified by the obesity studies.
+With a well-characterized measurement process we can better evaluate study conclusions.
+In turn, reducing the identification of spurious associations, such as the ones identified by the obesity studies analyzed in the @sze2016looking meta-analysis.
 
 
 A key component of measurement assessment is data with an expected value.
 Common sources of data used to assess marker-gene surveys include computer simulated data (_in silco_), mixtures of DNA or cells from individual organisms (mock communities), and technical replicates of environmental samples.
 _In silico_ data and mock communities provide expected values for use in assessment but do not recapitulate the complexity of environmental samples or the error profile of real sequencing data.
 Without an expected value technical replicates are only suitable for method comparison.
-As part of this dissertation, I will introduce a new data type, mixtures of environmental samples, which provide the complexity of real data and an expected value for assessment.
+Another data type, mixtures of environmental samples, provide the complexity of real data and an expected value for assessment.
 
 ## Dissertation Summary
 In this dissertation, I will present a framework for 16S rRNA marker-gene survey measurement assessment using a novel mixture dataset along with software to facilitate working with 16S rRNA marker-gene survey data.
-Chapter \@ref(measurement-process-assessment) provides an overview of the measurement process and assessment.
-In Chapter \@ref(count-table)  the assessment framework was used to evaluate count table accuracy, differential abundance, and beta-diversity analysis.
-I will use the framework to assess how well bioinformatic pipelines and normalization methods minimize the impact of sequencing artifacts on beta-diversity analysis in Chapter \@ref(diversity-assessment-chpt).
+Chapter \@ref(measurement-process-assessment) provides an overview of the 16S rRNA sequencing measurement process and assessment.
+Chapters \@ref(count-table) and \@ref(diversity-assessment-chpt) utilize a two-sample titration assessment dataset that I generated for this disseration (Fig. \@ref(fig:assessmentExperimentalDesign)).
+In Chapter \@ref(count-table) my assessment framework was used to evaluate the relative and differential abundance values for count tables generated using different bioinformatic pipelines.
+For Chapter \@ref(diversity-assessment-chpt) I developed methods to assess beta-diversity.
+I then used the methods to evaluate the impact of sequencing artifacts on bioinformatic pipelines and normalization methods.
 Finally, Chapter \@ref(metagenomefeatures-chpt)  describes the Bioconductor R package, _metagenomeFeatures_, I developed for working with 16S rRNA marker-gene survey data and 16S rRNA databases.
 The assessment framework and software along with the assessment study results presented here will facilitate the development of improved computational methods and advance our understanding of the marker-gene survey measurement process.
 The last three sections of this chapter provide a brief overview of the three main disseration chapters.
+
+
+```{r assessmentExperimentalDesign, echo = FALSE, fig.cap = "Assessment dataset experimental design flowchart. Two-sample titration series were generated using DNA from stool samples collected as part of an Enterotoxigenic _Escherichia coli_ (ETEC) vaccine trial.
+The titration end point samples were selected as the initial sampling timepoint in the vaccine trial and timepoint after exposure with the highest measured concentration of ETEC.
+The assessment dataset includes multiple biological factors and technical replicates enabling the charaterization of multiple sources of bias and dispersion in the measurement process.The assessment dataset includes samples from five subjects, vaccine trial participants, with a two-sample titration series for each subject. Four 16S rRNA PCR replicates per titration series sample. The PCR assays were split into technical replicates and sent to two laboratories for library preparation and sequencing. Libraries were sequenced twice as each laboratory for a total of four sequence datasets."}
+knitr::include_graphics("assessment-dataset-workflow.png")
+```
 
 
 ### Count Table Assessment
@@ -63,30 +72,30 @@ Appropriate datasets and methods are needed to evaluate the 16S rRNA marker-gene
 Numerous studies have qualitatively and quantitatively assessed the 16S rRNA measurement process using mock communities, simulated data, and environmental samples.
 
 
-Mock communities are used to assess the qualitative characteristics of a dataset [@bokulich2016mockrobiota].
+Qualitative characterisitcs are commonly assessed using mock communities  [@bokulich2016mockrobiota].
 As the number of organisms in the mock community is known, the total number of features can be compared to the expected value.
 The number of observed features in a mock community is often significantly higher than the expected number of organism [@Kopylova2014].
+Although, when mock community data is processed using sequence inference methods the count tables, the observed and expected number of features is consistent [@callahan2016dada2].
 The higher than expected number of features is often attributed to sequencing and PCR artifacts as well as reagent contaminants [@Brooks2015; @Huse2010].
-
-A notable exception to this is mock community benchmarking studies evaluating sequencing inference method, such as DADA2 [@callahan2016dada2].
+However, benchmarking studies evaluating sequence inference methods, such as DADA2,
 Sequence inference methods aim to reduce the number of sequence artifacts features.
 While mock communities have a known value, they lack the feature diversity and relative abundance dynamic range of real samples [@bokulich2016mockrobiota].
 
 
 The quantitative characteristics of 16S rRNA sequence data are normally assessed using mock communities and simulated data.
-Mock communities of equimolar and staggered concentration are used to assess the relative abundance estimates quantitative accuracy [@Kopylova2014].
+To assess the quantitative accuracy of relative abundance estimates mock communities of equimolar and staggered concentration are commonly used [@Kopylova2014].
 Results from relative abundance estimates using mock communities generated from mixtures of DNA have shown taxonomic specific effects where individual taxa are under or over represented in a sample.
 These taxonomic specific effects have been attributed to primer mismatches and DNA extraction biases [@Brooks2015]. <!-- surely GC bias must have a role as well, seems like you generally need more discussion about sources of bias here, since that's the motivation for the whole paper? -->
-Simulated count tables have been used to assess differential abundance method, where specific taxa are artificially overrepresented in one set of samples compared to another [@McMurdie2014].
+Simulated count tables have been used to assess differential abundance methods, where specific taxa are artificially overrepresented in one set of samples compared to another [@McMurdie2014].
 Only computational steps of the measurement process can be assessed using simulated data.
 
 
 Quantitative and qualitative assessment can also be performed using sequence data generated from mixtures of environmental samples.
-While simulated data and mock communities are useful for evaluating and benchmarking new methods one needs to consider that methods optimized for mock communities and simulated data are not necessarily optimized for the sequencing error profile and feature diversity of real samples.
+Using simulated data and mock communities evaluating and benchmarking new methods can result in over training the bioinformatic pipelines to data that do not recapitualte the sequencing error profile and feature diversity of real samples.
 Data from environmental samples, which are real samples, are often used to benchmark new molecular laboratory and computational methods.
 However, without an expected value to compare to, only measurement precision can be evaluated.
 By mixing environmental samples, an expected value can be calculated using information from the unmixed samples and how they were mixed.
-Mixtures of environmental samples have previously been used to evaluate gene expression measurements microarrays and RNAseq data [@parsons2015using; @pine2011adaptable; @thompson2005use].
+Mixtures of environmental samples have previously been used to evaluate gene expression measurements, e.g. microarrays and RNAseq data [@parsons2015using; @pine2011adaptable; @thompson2005use].
 
 
 In Chapter \@ref(count-table), we describe the mixture dataset of extracted DNA from human stool samples we generated for assessing 16S rRNA sequencing.
@@ -130,7 +139,7 @@ The metrics should therefore be evaluated in a complementary manner to gain maxi
 
 Previous studies have evaluated different bioinformatics pipelines [@Sinha2017-ew] and normalization methods [@McMurdie2014; @Weiss2017] using beta-diversity metrics.
 Yet how well pipelines account for low sequence quality and total abundance differences remains unknown.
-Our mixture dataset includes multiple levels of technical replication, allowing us to evaluate (1) beta-diversity repeatability,
+The mixture dataset includes multiple levels of technical replication, allowing us to evaluate (1) beta-diversity repeatability,
 (2) ability to distinguish between groups of samples with varying similarity,
 and (3) identify differences in beta-diversity between biological and technical factors.
 Furthermore, the dataset includes data from four sequencing runs with different sequencing error rates and library sizes,
