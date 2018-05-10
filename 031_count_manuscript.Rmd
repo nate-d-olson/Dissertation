@@ -12,16 +12,16 @@ Rmarkdown with BMC template https://stackoverflow.com/questions/44373540/no-auth
 
 
 ## Abstract
-```{r countAbstract, child="mgtst_pub/Abstract.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
+```{r countAbstract, child="mgtst_pub/docs/Abstract.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
 ```
 
 ## Introduction
-```{r countIntroduction, child="mgtst_pub/Introduction.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
+```{r countIntroduction, child="mgtst_pub/docs/Introduction.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
 ```
 
 
 ## Methods
-```{r countMethods, child="mgtst_pub/Methods.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
+```{r countMethods, child="mgtst_pub/docs/Methods.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
 ```
 
 ## Results
@@ -30,11 +30,11 @@ Rmarkdown with BMC template https://stackoverflow.com/questions/44373540/no-auth
 ```
 
 ### Titration Series Validation
-To use information from the unmixed samples to obtain expected count values for the titrations we first need to evaluate two assumptions about the mixed samples:
+To validate the two-sample titration dataset for use in abundance assessment we evaluated two assumptions about the titrations:
 1. The samples were mixed volumetrically in a $log_2$ dilution series according to the mixture design.
-2. The unmixed pre- and post-exposure samples have the same proportion of prokaryotic DNA.
-Exogenous DNA was spiked into the unmixed samples before mixing and quantified using qPCR to validate the the samples were volumetrically mixed according to the mixture design.
-To evaluate the second assumption total prokaryotic DNA in the titrations samples was quantified using a qPCR assay targeting the 16S rRNA gene.
+2. The unmixed PRE and POST samples have the same proportion of prokaryotic DNA.
+To validate the sample volumetric mixing exogenous DNA was spiked into the unmixed samples before mixing and quantified using qPCR .
+To evaluate if the PRE and POST samples had the same proportion of prokaryotic DNA total prokaryotic DNA in the titrations samples was quantified using a qPCR assay targeting the 16S rRNA gene.
 
 
 #### Spike-in qPCR results
@@ -50,9 +50,9 @@ To evaluate the second assumption total prokaryotic DNA in the titrations sample
 ```
 
 ### Measurement Assessment
-Next, we assessed qualitative and quantitative nature of 16S rRNA measurement process using our two-sample titration dataset.
+Next, we assessed the qualitative and quantitative nature of 16S rRNA measurement process using our two-sample titration dataset.
 For the qualitative assessment, we analyzed the relative abundance of features only observed in the unmixed samples or titrations which are not expected given the titration experimental design.
-The quantitative assessment evaluated relative abundance and differential abundance log fold-change estimates.
+The quantitative assessment evaluated relative and differential abundance estimates.
 
 #### Qualitative Assessment
 
@@ -78,9 +78,9 @@ logFC Error Rate Results
 ```
 
 ## Discussion
-```{r countDiscussion, child="mgtst_pub/Discussion.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
+```{r countDiscussion, child="mgtst_pub/docs/Discussion.Rmd", warning=FALSE, message=FALSE, echo = FALSE}
 ```
 
 
-```{r supplemental, child="results/Supplemental.Rmd", warning=FALSE, message=FALSE, echo = FALSE, eval = FALSE}
+```{r supplemental, child="mgtst_pub/results/Supplemental.Rmd", warning=FALSE, message=FALSE, echo = FALSE, eval = FALSE}
 ```

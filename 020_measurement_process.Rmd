@@ -1,9 +1,22 @@
 # Measurement Process and Assessment. {#measurement-process-assessment}
 
+```
+ + Defining the measurand, what is being measured
+  - 16S rRNA sequencing has multiple measurands
+  - After the measurand is defined the process used to quantify the measurand can be assessed.
++ Steps to measurement process assessment
+  1. Decompose measurement process
+  1. Design experiments to isolate measurement process elements
+  1. evaluate bias and dispersion at each element
+  + steps 2 and 3 require samples with known characteristics
++ 16S rRNA assessment studies evaluate steps of the measurement process using multiple measurands.
++ Value of a measurand first approach
++ In this chapter I will provide an overview the measurement process ...
+```
 
 ## Measurement Process {#measurement-process}
 
-The 16S rRNA marker-gene survey measurement process includes a number of laboratory and computational steps (Fig. \@ref(fig:measurementProcess)).
+The 16S rRNA marker-gene survey measurement process includes a number of laboratory and computational steps (Fig. \@ref(fig:measurementProcessLab) and  \@ref(fig:measurementProcessComp)).
 In this section, I will provide an overview of the measurement process, and highlight significant known sources of error and dispersion (Fig. \@ref(fig:cause-effect)).
 See @Goodrich2014 for a review of 16S rRNA marker-gene survey measurement process and general recommendations for conducting microbiome experiments.
 
@@ -27,9 +40,9 @@ cause.and.effect(
 
 
 The 16S rRNA gene is used for marker-gene surveys as it is found in all prokaryotic organisms, including both bacteria and archaea and contains hypervariable and conserved regions.
-The conserved regions allow for the use of PCR primers which can amplify the 16S rRNA gene from diverse taxonomic groups [@Martinez-Porchas2017-pi;@klindworth2012evaluation].
+The conserved regions allow for the use of PCR primers which can amplify the 16S rRNA gene from diverse taxonomic groups [@Martinez-Porchas2017-pi; @klindworth2012evaluation].
 Whereas hypervariable regions, allow genus and sometime species-level taxonomic classification.
-Additionally, as the 16S rRNA gene is well studied there are several extensive well-curated databases, e.g. SILVA, RDP, and Greengenes [@quast2012silva;@McDonald2012-ro;@Cole2014].
+Additionally, as the 16S rRNA gene is well studied there are several extensive well-curated databases, e.g. SILVA, RDP, and Greengenes [@quast2012silva; @McDonald2012-ro; @Cole2014].
 There are drawbacks to using the 16S rRNA gene as well.
 Due to the conserved nature of the gene, sequences cannot be used for the strain-level taxonomic classification required for some applications, such as pathogen detection and identification [@janda200716s].
 Additionally, 16S rRNA is a multicopy gene that is known to be horizontally transferred between organisms, as a result, the within-genome 16S rRNA gene copy diversity can be greater than the between-genome diversity for some genera [@pei2010diversity].
@@ -44,18 +57,18 @@ knitr::include_graphics("measurement-process-comp.png")
 ```
 
 
-For the measurement process, laboratory component raw sequence data are generated from environmental samples (Fig. \@(fig:measurementProcessLab)).
+For the measurement process, laboratory component raw sequence data are generated from environmental samples (Fig. \@ref(fig:measurementProcessLab)).
 Samples are initially collected and stored to minimize changes to the community composition prior to sample processing.
 Next, DNA is extracted from the sample, and the 16S rRNA is amplified using PCR.
-Then PCR product concentrations are normalized to minimize variability in the number of reads obtained per sample.
+Then PCR products concentrations are normalized, diluted to a standard concentration, to minimize between sample variability in the number of reads obtained per sample.
 Finally, the normalized PCR products are pooled and sequenced.
-Preferential DNA extraction and PCR amplification are two of the largest sources of bias in the measurement process (Fig. \@(fig:cause-effect)).
+Preferential DNA extraction and PCR amplification are two of the largest sources of bias in the measurement process (Fig. \@ref(fig:cause-effect)).
 Other sources of error introduced at this point include PCR artifacts such as amplification errors (point mutations) and chimeras, sequence contaminants, and sequencing errors.
 Computational methods correct for PCR artifacts, contaminant removal, and sequencing error correction.
 Currently, there are no computational or laboratory methods to correct for preferential extraction or amplification.
 
 
-Computational methods, collectively referred to as the bioinformatic pipeline, convert raw sequence data into an annotated count table for use in downstream analysis (Fig. \@(fig:measurementProcesComp)).
+Computational methods, collectively referred to as the bioinformatic pipeline, convert raw sequence data into an annotated count table for use in downstream analysis (Fig. \@ref(fig:measurementProcessLab)).
 Bioinformatic pipelines use the same general approach, though the methods and order of individual steps vary by pipeline.
 The first step is pre-processing the raw reads.
 Pre-processing includes initial quality control steps, preparing reads for feature inference.
@@ -76,15 +89,16 @@ Beta-diversity is a measure of sample similarity and is used to compare feature 
 
 ## Feature Inference and Normalization {#feature-inference-normalization}
 
-The following section provides additional details about the feature inference and normalization methods that are the focus of the assessment framework presented in this disseration.
+The following section provides additional details about the feature inference and computational normalization methods that are the focus of the assessment framework presented in this disseration.
 Feature inference is used to group sequences into features that are representative of biologically relevant units.
+Computational normalization is used to reduce biases in downstream analysis due to differences in total abundance between samples.
 The feature inference process should maximize the number of features representing true sequences while minimizing the number of features representing sequence artifacts.
 The two primary feature inference method types are distance-based clustering and sequence inference.
 
 
 Distance-based feature inference methods cluster sequences based on defined similarity thresholds.
 These clustering thresholds are based on taxonomic group sequence diversity and sequencing error (e.g., 99% species level, 97% genus level, 1% error rate).
-Though studies characterizing within species and genera 16S rRNA sequence diversity [@pei2010diversity], and sequencing error rates [@Huse2010;@Schirmer2015;@Amore2016] challenge the validity of these values [@edgar2017updating].
+Though studies characterizing within species and genera 16S rRNA sequence diversity [@pei2010diversity], and sequencing error rates [@Huse2010; @Schirmer2015; @Amore2016] challenge the validity of these values [@edgar2017updating].
 
 
 There are three approaches to distance-based clustering, _de novo_, closed-reference, and open-reference.
@@ -110,55 +124,55 @@ Deblur proportionally assigns lower abundance sequences to higher abundance sequ
 
 
 After feature inference, the resulting count tables are normalized prior to use in downstream analysis.
-Normalization methods minimize biases due to differences in the total feature abundance between samples.
+Count table mormalization methods minimize biases due to differences in the total feature abundance between samples.
 Variability in total feature abundance is due to differences in the number of reads generated per sample, and the proportion of sequences passing quality filtering.
 There are two types of normalization methods rarefaction and scaling.
-Rarefaction has its roots in ecology, where it is used to normalize sampling intensity per survey area [@Gotelli2001;@Hughes2005].
+Rarefaction has its roots in ecology, where it is used to normalize sampling intensity per survey area [@Gotelli2001; @Hughes2005].
 To rarify counts, individual sample counts are randomly subsampled, without replacement, to a user-defined level and samples with total abundance values less than the rarefaction level are dropped.
 Scaling methods normalize count table values by sample-specific normalization factors.
 For total sum scaling (TSS), and cumulative sum scaling (CSS), sample counts are divided by the sum of feature counts to a defined abundance percentile, 0.75 for CSS, and total abundance for TSS (proportions) [@paulson2013differential].
-Other commonly used normalization methods include relative log expression (RLE), trimmed mean of M values (TMM), and upper quartile normalization [@Robinson2010;@McCarthy2012].
+Other commonly used normalization methods include relative log expression (RLE), trimmed mean of M values (TMM), and upper quartile normalization [@Robinson2010; @McCarthy2012].
 These methods were developed for normalizing microarray and RNAseq data but have been successfully used to normalize 16S rRNA marker-gene survey data [@McMurdie2014].
 
+## Measurement Assessment Experiment Development 
 
-## Measurement Assessment
-Measurement assessment is used to characterize, benchmark, and validate a measurement process.
-There are four parts to developing measurement assessment methods -
-(1) identify part of the measurement process being assessed,
-(2) determine assessment type,
-(3) define the measurand, and
+```
++ General guidelines for developing an experiment to evaluate measurement process elements.
++ There are four parts to measurement assessment experiments consist of four parts
+(1) define the measurand,
+(2) identify part of the measurement process being assessed,
+(3) determine assessment type, and
 (4) identify appropriate data and metrics for the assessment.
+```
+
+When developing an assessment method, first define the measurand.
+The measurand is the observed value being quantified.
+For marker-gene survey analysis, there are multiple measurand definitions.
+The measurand can be defined based on the downstream analysis, e.g., log fold-change for differential abundance analysis or diversity metric for alpha- and beta-diversity analysis.
+The measurands can also be more general, such as count table values or feature DNA sequence.
 
 
-When developing an assessment method, one first needs to determine what part of the measurement process one is interested in evaluating.
+After the measurand is defined, the next step is to determine the part of the measurement process one is interested in evaluating.
 Assessments can compare the performance of different methods used in individual steps of the measurement process, for example, DNA extraction or PCR.
 Assessment methods can also evalute part of the measurement process, such as the computational or laboratory components.
 Alternatively, one can assess the measurement process as a whole.
 The part of the measurement process being evaluated defines the experimental design used to generate the assessment dataset.
 
 
-Next, one must determine the type of measurement assessment.
-Each assessment type can be used to evaluate part of or the whole measurement process.
-The first assessment type is measurement process performance, or how well-observed values agree with expected results.
+Next, one must determine the measurement assessment type.
+The one assessment type is measurement process performance, or how well-observed values agree with expected results.
 To evaluate sequencing error rates, @Schirmer2015 used a mock community of 59 strains and compared the observed sequence data to 16S rRNA sequences from  genome sequence data for the 59 strains.
-@Schirmer2015 were able to evaluate the impact of different laboratory protocols and pre-processing methods based on error rate reduction.
+@Schirmer2015 evaluated the impact of different laboratory protocols and pre-processing methods based on sequencing error rate reduction.
 An assessment can also evaluate the impact of different protocols and computational methods on downstream analysis.
 For example, to evaluate the performance of different normalization methods on differential abundance methods, @McMurdie2014 simulated feature differential abundances by perturbing count table values to have defined effect sizes between treatment and control conditions.
-The third assessment type evaluates measurement repeatability and reproducibility.
-Interlaboratory studies are an example of this type of assessment where multiple laboratories process the same set of samples or dataset using either the same or different protocols.
+Additionally, assessments can evaluate measurement repeatability and reproducibility.
+Interlaboratory studies are an example of this assessment type where multiple laboratories process the same set of samples or dataset using either the same or different protocols.
 The microbiome quality control (MBQC) is an example of this assessment type [@Sinha2017-ew].
 For MBQC, sets of replicate samples were sent to the participating laboratories for sequencing.
 The resulting sequencing data were made available for the participants, as well as others, to process using different computational methods.
 
 
-The next step in measurement assessment method development is defining the measurand.
-The measurand is the observed value being quantified.
-For marker-gene survey analysis, there are multiple measurand definitions.
-The measurand can be defined based on the downstream analysis, e.g., log fold-change for differential abundance analysis or diversity metric for alpha- and beta-diversity analysis.
-The measurands can also be more general, such as count table values or feature DNA sequence.
-Once the measurand is defined, appropriate data and metrics can be identified.
-
-
+After defining the measurand, the part of the measurement process being evaluated, and assessment type, appropriate data and metrics are identified.
 The primary data types used in marker-gene survey measurement assessment include _in-silico_ data, mock communities, and technical replicates.
 Different parts of the measurement process and measurands can be assessed with different data types.
 _in-silico_ data, either simulated sequence data or count tables, can be used to assess computational methods and downstream analysis.
@@ -168,17 +182,36 @@ Once the measurand is defined, and appropriate data for assessment is identified
 
 
 Metrics used for assessment are dependent on the statistical properties of the measurand.
-For quantitative measurands, such as count table values, error rate (the difference between the expected and observed values, normalized by the expected value) is commonly used.
+For quantitative measurands, such as count table values, relative error (the difference between the expected and observed values, normalized by the expected value) is commonly used.
 For evaluating the linear relationship between observed and expected values a linear model can be used to estimate the overall agreement, $R^2$, and whether the relationship is 1-to-1, model slope.
-Another metric for quantitative measurands, is signal to noise ratio, for example, with beta-diversity metrics, the ratio of beta-diversity between and within treatments or conditions.
+Another metric for quantitative measurands, is signal-to-noise ratio, for example, with beta-diversity metrics, the ratio of beta-diversity between and within treatments or conditions.
 For qualitative measures, such as feature presence-absence, standard truth table metrics, such as sensitivity and specificity can be used.
 Similarly, area under the curve (AUC) and receiver operating characteristics (ROC) curves can be used to evaluate qualitative performance for a set of observed values.
 
 
-## Assessment using Mixtures of Environmental Samples
+
+
+
+
+### Example Measurement Assessment Studies
+To evaluate sequencing error rates, @Schirmer2015 used a mock community of 59 strains and compared the observed sequence data to 16S rRNA sequences from  genome sequence data for the 59 strains.
+@Schirmer2015 evaluated the impact of different laboratory protocols and pre-processing methods based on sequencing error rate reduction.
+An assessment can also evaluate the impact of different protocols and computational methods on downstream analysis.
+
+An assessment can also evaluate the impact of different protocols and computational methods on downstream analysis.
+For example, to evaluate the performance of different normalization methods on differential abundance methods, @McMurdie2014 simulated feature differential abundances by perturbing count table values to have defined effect sizes between treatment and control conditions.
+
+Interlaboratory studies are an example of this assessment type where multiple laboratories process the same set of samples or dataset using either the same or different protocols.
+The microbiome quality control (MBQC) is an example of this assessment type [@Sinha2017-ew].
+For MBQC, sets of replicate samples were sent to the participating laboratories for sequencing.
+The resulting sequencing data were made available for the participants, as well as others, to process using different computational methods.
+
+
+
+### Assessment using Mixtures of Environmental Samples
 Limitations to using environmental samples and mock communities for measurement assessment can be addressed using mixtures of environmental samples.
 Mixtures of environmental samples provide the complexity of real data regarding feature diversity and dynamic range with expected values for comparison.
-Mixtures of environmental samples have previously been used to evaluate microarray and RNAseq methods [@irizarry2003exploration;@thompson2005use;@pine2011adaptable;@parsons2015using].
+Mixtures of environmental samples have previously been used to evaluate microarray and RNAseq methods [@irizarry2003exploration; @thompson2005use; @pine2011adaptable; @parsons2015using].
 When used to assess marker-gene surveys, mixtures of environmental samples can be used to assess count table accuracy, differential abundance, and beta-diversity.
 Simulated mixtures of environmental samples (simulated count tables) have previously been used to evaluate deferentially abundant features and beta diversity  [@McMurdie2014].
 
@@ -187,7 +220,7 @@ A limitation to using mixtures of environmental samples is the uncertainty in th
 Expected value estimates are based on information from the unmixed samples and the mixture design.
 Measurement values obtained for the unmixed samples are generally obtained using the same measurement process being assessed, and therefore, measurement uncertainty may not be well understood.
 Using the same measurement process and technical replicates allows for the quantification of the measurement uncertainty, but provides no information about potential measurement biases.
-In addition to uncertainty in the unmixed sample values, there may be uncertainty in the mixture design.
+In addition to uncertainty in the unmixed sample values, there may be uncertainty in the mixture design, both of which can be estimated.
 For RNAseq studies, since the sequencing assay targets mRNA, the proportion of mRNA in the RNA extract needs to be accounted for in the mixture equation [@parsons2015using].
 Similarly for 16S rRNA marker-gene surveys, as the PCR assay targets prokaryotic DNA, the proportion of prokaryotic DNA in the sample should be characterized and taken into consideration.
 
