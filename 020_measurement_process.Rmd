@@ -1,18 +1,49 @@
 # Measurement Process and Assessment. {#measurement-process-assessment}
 
-```
- + Defining the measurand, what is being measured
-  - 16S rRNA sequencing has multiple measurands
-  - After the measurand is defined the process used to quantify the measurand can be assessed.
-+ Steps to measurement process assessment
-  1. Decompose measurement process
-  1. Design experiments to isolate measurement process elements
-  1. evaluate bias and dispersion at each element
-  + steps 2 and 3 require samples with known characteristics
-+ 16S rRNA assessment studies evaluate steps of the measurement process using multiple measurands.
-+ Value of a measurand first approach
-+ In this chapter I will provide an overview the measurement process ...
-```
+Metrology, measurement science, provides a well established framework for characterizing and evaluating measurements [@Magnusson2014-qz; @ellison2013eurachem].
+This framework was established for primarily for routine single measurand assay and well defined applications.
+For example measurement validation is used to determine if a measurement process is fit for purpose, that is the measurements meet a specific requirement.
+The requirements can be measurement bias and precision are within a defined range or a minimum detectable analyte concentration.
+Measurement validation requires a sample that is representative of the type of sample the measurement process will encounter.
+The sample must also have known charateristics for use in evaluating the measurement results.
+Additionally, the measurement process uncertainty is also determined.
+The measurement uncertainty is obtained by first defining the measurand and identifying sources of uncertainty [@ellison2013eurachem].
+Each source of uncertainty is quantified by experimental estimation, modelling from theoretical principles, or estimation using expert judgement.
+The expanded uncertainty is then calculated by combining uncertainty estimates for individual sources.
+The observed measurement value and its expanded uncertainty along with the measurement requirements are then used to validate the measurement process
+
+
+With 16S rRNA sequencing measurements are made for hundereds to thousands of organisms simultaneously.
+Furthermore, there is no clear single application as the same data are used to test multiple hypothesis.
+The traditional framework for characterizing and evaluating a measurement process is not easily applied.
+Therefore, I present a more general characterization of the measurement method performance as measurement assessment, which borrows from the measurement validation process.
+Measurement process assessment consists of three steps; decomposing the measurement process, designing experiments to islolate measurement process elements, and evaluating bias and dispersion at each element.
+In this chapter I will describe and decompose the 16S rRNA sequencing measurement process.
+A measurement process is assessed relative to the measurand, the entity quantified by the measurement process.
+After decomposing the measurement process I will describe common 16S rRNA measurands, feature abundance, relative abundance, as well as alpha- and beta-diversity.
+Next, I will describe the steps required to conduct an assessment study.
+Finally, I will place the assessment work presented in this dissertation within the larger context of 16S rRNA measurement process assessment.
+
+
+
+
+<!-- Relevant metrology concepts
+Determining whether measurements statisfy a requirement.
+1. Validation studies - precision, bias, linearity, detection limit, and robustness
+2. Conducting an experiment for method performance
+  1. representativeness
+  2. variation factors
+3. Measurement uncertainty
+  1. specify measurand
+  2. identify sources of uncertainty
+  3. quantify uncertainty components
+  4. calculate combined uncertainty
+5. Combined uncertainty is used in measurment process validation
+6. Measurements
+  1. emperically defined - true value, independent of the measurement method
+  2. oppertationally defined - value is dependent on the measurement method
+3 -->
+
 
 ## Measurement Process {#measurement-process}
 
@@ -134,42 +165,21 @@ For total sum scaling (TSS), and cumulative sum scaling (CSS), sample counts are
 Other commonly used normalization methods include relative log expression (RLE), trimmed mean of M values (TMM), and upper quartile normalization [@Robinson2010; @McCarthy2012].
 These methods were developed for normalizing microarray and RNAseq data but have been successfully used to normalize 16S rRNA marker-gene survey data [@McMurdie2014].
 
-## Measurement Assessment Experiment Development 
 
-```
-+ General guidelines for developing an experiment to evaluate measurement process elements.
-+ There are four parts to measurement assessment experiments consist of four parts
+## Designing a Measurement Assessment Experiment
+
+Measurement assessment experiments are used to characterize the bias and dispersion for elements of a measurement process.
+There are four steps to designing a measurement assessment experiment;
 (1) define the measurand,
-(2) identify part of the measurement process being assessed,
-(3) determine assessment type, and
-(4) identify appropriate data and metrics for the assessment.
-```
+(2) identify appropriate data and metrics for the assessment,
+(3) design an experiment to isolate measurement process element for assessment.
+
 
 When developing an assessment method, first define the measurand.
 The measurand is the observed value being quantified.
 For marker-gene survey analysis, there are multiple measurand definitions.
 The measurand can be defined based on the downstream analysis, e.g., log fold-change for differential abundance analysis or diversity metric for alpha- and beta-diversity analysis.
 The measurands can also be more general, such as count table values or feature DNA sequence.
-
-
-After the measurand is defined, the next step is to determine the part of the measurement process one is interested in evaluating.
-Assessments can compare the performance of different methods used in individual steps of the measurement process, for example, DNA extraction or PCR.
-Assessment methods can also evalute part of the measurement process, such as the computational or laboratory components.
-Alternatively, one can assess the measurement process as a whole.
-The part of the measurement process being evaluated defines the experimental design used to generate the assessment dataset.
-
-
-Next, one must determine the measurement assessment type.
-The one assessment type is measurement process performance, or how well-observed values agree with expected results.
-To evaluate sequencing error rates, @Schirmer2015 used a mock community of 59 strains and compared the observed sequence data to 16S rRNA sequences from  genome sequence data for the 59 strains.
-@Schirmer2015 evaluated the impact of different laboratory protocols and pre-processing methods based on sequencing error rate reduction.
-An assessment can also evaluate the impact of different protocols and computational methods on downstream analysis.
-For example, to evaluate the performance of different normalization methods on differential abundance methods, @McMurdie2014 simulated feature differential abundances by perturbing count table values to have defined effect sizes between treatment and control conditions.
-Additionally, assessments can evaluate measurement repeatability and reproducibility.
-Interlaboratory studies are an example of this assessment type where multiple laboratories process the same set of samples or dataset using either the same or different protocols.
-The microbiome quality control (MBQC) is an example of this assessment type [@Sinha2017-ew].
-For MBQC, sets of replicate samples were sent to the participating laboratories for sequencing.
-The resulting sequencing data were made available for the participants, as well as others, to process using different computational methods.
 
 
 After defining the measurand, the part of the measurement process being evaluated, and assessment type, appropriate data and metrics are identified.
@@ -189,23 +199,11 @@ For qualitative measures, such as feature presence-absence, standard truth table
 Similarly, area under the curve (AUC) and receiver operating characteristics (ROC) curves can be used to evaluate qualitative performance for a set of observed values.
 
 
-
-
-
-
-### Example Measurement Assessment Studies
-To evaluate sequencing error rates, @Schirmer2015 used a mock community of 59 strains and compared the observed sequence data to 16S rRNA sequences from  genome sequence data for the 59 strains.
-@Schirmer2015 evaluated the impact of different laboratory protocols and pre-processing methods based on sequencing error rate reduction.
-An assessment can also evaluate the impact of different protocols and computational methods on downstream analysis.
-
-An assessment can also evaluate the impact of different protocols and computational methods on downstream analysis.
-For example, to evaluate the performance of different normalization methods on differential abundance methods, @McMurdie2014 simulated feature differential abundances by perturbing count table values to have defined effect sizes between treatment and control conditions.
-
-Interlaboratory studies are an example of this assessment type where multiple laboratories process the same set of samples or dataset using either the same or different protocols.
-The microbiome quality control (MBQC) is an example of this assessment type [@Sinha2017-ew].
-For MBQC, sets of replicate samples were sent to the participating laboratories for sequencing.
-The resulting sequencing data were made available for the participants, as well as others, to process using different computational methods.
-
+The next step is to determine the measurement process steps or element one is interested in evaluating and design an experiment isolating the element.
+Assessments can compare the performance of different methods used in individual steps of the measurement process, for example, DNA extraction or PCR.
+Assessment methods can also evalute part of the measurement process, such as the computational or laboratory components.
+Alternatively, one can assess the measurement process as a whole.
+The part of the measurement process being evaluated defines the experimental design used to generate the assessment dataset.
 
 
 ### Assessment using Mixtures of Environmental Samples

@@ -50,10 +50,10 @@ Another data type, mixtures of environmental samples, provide the complexity of 
 ## Dissertation Summary
 In this dissertation, I will present a framework for 16S rRNA marker-gene survey measurement assessment using a novel mixture dataset along with software to facilitate working with 16S rRNA marker-gene survey data.
 Chapter \@ref(measurement-process-assessment) provides an overview of the 16S rRNA sequencing measurement process and assessment.
-Chapters \@ref(count-table) and \@ref(diversity-assessment-chpt) utilize a two-sample titration assessment dataset that I generated for this disseration (Fig. \@ref(fig:assessmentExperimentalDesign)).
-In Chapter \@ref(count-table) my assessment framework was used to evaluate the relative and differential abundance values for count tables generated using different bioinformatic pipelines.
+In Chapter \@ref(count-table) I describe the development and application of an assessment framework for evaluate the relative and differential abundance values for count tables generated using different bioinformatic pipelines.
 For Chapter \@ref(diversity-assessment-chpt) I developed methods to assess beta-diversity.
 I then used the methods to evaluate the impact of sequencing artifacts on bioinformatic pipelines and normalization methods.
+Chapters \@ref(count-table) and \@ref(diversity-assessment-chpt) utilize a two-sample titration assessment dataset generated are part of this disseration (Fig. \@ref(fig:assessmentExperimentalDesign)).
 Finally, Chapter \@ref(metagenomefeatures-chpt)  describes the Bioconductor R package, _metagenomeFeatures_, I developed for working with 16S rRNA marker-gene survey data and 16S rRNA databases.
 The assessment framework and software along with the assessment study results presented here will facilitate the development of improved computational methods and advance our understanding of the marker-gene survey measurement process.
 The last three sections of this chapter provide a brief overview of the three main disseration chapters.
@@ -64,7 +64,7 @@ knitr::include_graphics("assessment-dataset-workflow.png")
 ```
 
 
-### Count Table Assessment
+### Abundance Assessment
 Proper measurement method evaluation allows for the characterization of individual steps impact on the measurement processes as a whole and determine where to focus efforts for improving the measurement process.
 Appropriate datasets and methods are needed to evaluate the 16S rRNA marker-gene-survey measurement process.
 Numerous studies have qualitatively and quantitatively assessed the 16S rRNA measurement process using mock communities, simulated data, and environmental samples.

@@ -1,4 +1,11 @@
-# Count Table Assessment {#count-table}
-Assessing 16S marker-gene survey data analysis methods using mixtures of human stool sample DNA extracts.
+<!-- \newpage -->
+<!-- \chapter[Abundance Assessment]{Assessing 16S marker-gene survey data analysis methods using mixtures of human stool sample DNA extracts.} -->
+# Abundance Assessment {#count-table}
+<!-- \sectionsubtitle{Assessing 16S marker-gene survey data analysis methods using mixtures of human stool sample DNA extracts.} -->
+
+<!-- \newpage -->
+
+<!-- \hbox{\ } -->
+<!-- \newpage -->
 
 <!-- ## Preface -->
