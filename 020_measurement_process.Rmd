@@ -1,25 +1,26 @@
 # Measurement Process and Assessment. {#measurement-process-assessment}
 
-Metrology, measurement science, provides a well established framework for characterizing and evaluating measurements [@Magnusson2014-qz; @ellison2013eurachem].
-This framework was established for primarily for routine single measurand assay and well defined applications.
-For example measurement validation is used to determine if a measurement process is fit for purpose, that is the measurements meet a specific requirement.
-The requirements can be measurement bias and precision are within a defined range or a minimum detectable analyte concentration.
-Measurement validation requires a sample that is representative of the type of sample the measurement process will encounter.
-The sample must also have known charateristics for use in evaluating the measurement results.
-Additionally, the measurement process uncertainty is also determined.
-The measurement uncertainty is obtained by first defining the measurand and identifying sources of uncertainty [@ellison2013eurachem].
+Metrology, measurement science, provides a well established framework for validating, characterizing and evaluating measurements [@Magnusson2014-qz; @ellison2013eurachem].
+This framework was established for routine single measurand assays with well defined applications.
+Measurement validation is used to determine if a measurement process meets a set of specific requirement.
+The measurement process requirements can include measurement bias and precision are within a defined range or a minimum detectable analyte concentration.
+For example, measurement validation is used to determine if an assay is able to detect a specific pathogen in a stool sample at a minimum concentration.
+Measurement validation also requires that the sample used to validate the measurement is representative of the sample type the measurement process will encounter.
+The samples used for validation must also have known charateristics for use in evaluating measurement results.
+As part of the measurement validation process measurement expanded uncertainty is quantified determined.
+Measurement expanded uncertainty is obtained by first defining the measurand, decomposing the measurement process, and identifying sources of uncertainty [@ellison2013eurachem].
 Each source of uncertainty is quantified by experimental estimation, modelling from theoretical principles, or estimation using expert judgement.
-The expanded uncertainty is then calculated by combining uncertainty estimates for individual sources.
-The observed measurement value and its expanded uncertainty along with the measurement requirements are then used to validate the measurement process
+The expanded uncertainty is calculated by combining uncertainty estimates for individual sources.
+The observed measurement value and its expanded uncertainty along with the measurement requirements are used to validate the measurement process.
 
 
 With 16S rRNA sequencing measurements are made for hundereds to thousands of organisms simultaneously.
 Furthermore, there is no clear single application as the same data are used to test multiple hypothesis.
 The traditional framework for characterizing and evaluating a measurement process is not easily applied.
 Therefore, I present a more general characterization of the measurement method performance as measurement assessment, which borrows from the measurement validation process.
+Where a measurement process is assessed relative to the measurand, the entity quantified by the measurement process [@VIM].
 Measurement process assessment consists of three steps; decomposing the measurement process, designing experiments to islolate measurement process elements, and evaluating bias and dispersion at each element.
 In this chapter I will describe and decompose the 16S rRNA sequencing measurement process.
-A measurement process is assessed relative to the measurand, the entity quantified by the measurement process.
 After decomposing the measurement process I will describe common 16S rRNA measurands, feature abundance, relative abundance, as well as alpha- and beta-diversity.
 Next, I will describe the steps required to conduct an assessment study.
 Finally, I will place the assessment work presented in this dissertation within the larger context of 16S rRNA measurement process assessment.
