@@ -108,8 +108,11 @@ $endif$
 
 %% Single space tables 
 % \usepackage{adjustbox}
-\AtBeginEnvironment{tabular}{\singlespacing\small}
+% \AtBeginEnvironment{tabular}{\singlespacing\small}
 
+%% Preventing text going into margins
+\usepackage[document]{ragged2e}
+\usepackage{microtype}
 
 \newcommand{\tbsp}{\rule{0pt}{18pt}} %used to get a vertical distance after \hline
 \renewcommand{\baselinestretch}{2}
