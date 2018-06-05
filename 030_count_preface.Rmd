@@ -1,11 +1,7 @@
 <!-- \newpage -->
-<!-- \chapter[Abundance Assessment]{Assessing 16S marker-gene survey data analysis methods using mixtures of human stool sample DNA extracts.} -->
 # Abundance Assessment {#count-table}
-<!-- \sectionsubtitle{Assessing 16S marker-gene survey data analysis methods using mixtures of human stool sample DNA extracts.} -->
 
-<!-- \newpage -->
-
-<!-- \hbox{\ } -->
-<!-- \newpage -->
-
-<!-- ## Preface -->
+\begin{singlespace}
+\normalfont\Large\center\textit{Assessing 16S marker-gene survey data analysis methods using mixtures of human stool sample DNA extracts.}
+\end{singlespace}
+\vspace{1pc}

@@ -11,10 +11,10 @@ Additionally, I developed the R Bioconductor package, _metagenomeFeatures_ for w
 The _metagenomeFeatures_ package provides data structures and functions for working with 16S rRNA gene sequence reference databases and marker-gene survey feature data. The data structure provided by the `MgDb-class` in conjunction with the shared sequence identifier system developed by RNACentral facilitates comparisons between 16S rRNA databases. The `mgFeatures-class` provides the groundwork for the development of a common data structure for working with metagenomic and marker-gene sequence data in R which will increase interoperability between R packages developed for working with metagenomic sequence data. Additionally, while the data structures were developed for 16S rRNA gene sequence data they can be used for any marker-gene sequence data without modification and can be extended to work with shotgun metagenomic sequence data and databases.
 
 
-Based on lessons learned from this dissertation new mixture datasets can be developed for further microbiome measurement assessment.
+Based on lessons learned from this dissertation, new mixture datasets can be developed for further microbiome measurement assessment.
 Additional 16S rRNA sequencing mixture datasets would serve as a complementary resource for the community.
-Using samples with either better characterized prokaryotic DNA proportions or minimal non-prokaryotic DNA would reduce the expected value uncertainty observed in this assessment.
-Also using samples with larger differences in microbial composition as titration endpoints to generate the mixtures would provide a more extensive set of features for assessment.
+Using samples with either better characterized prokaryotic DNA proportions, or minimal non-prokaryotic DNA, would reduce the expected value uncertainty observed in this assessment.
+Also, using samples with larger differences in microbial composition as titration endpoints to generate the mixtures would provide a more extensive set of features for assessment.
 As the mixtures were only processed using a single laboratory protocol (16S PCR through sequencing), mixture samples can be used as part of an interlaboratory study to further characterize the measurement process repeatability and reproducibility.
 Finally, mixtures can be used to assess other microbiome measurement processes such as shotgun metagenomics, metatranscriptomics, and even non-nucleic acid measurements such as metaproteomics and metametabolomics.
 

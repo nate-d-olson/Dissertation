@@ -19,10 +19,10 @@ Furthermore, there is no clear single application as the same data are used to t
 The traditional framework for characterizing and evaluating a measurement process is not easily applied.
 Therefore, I present a more general characterization of the measurement method performance as measurement assessment, which borrows from the measurement validation process.
 Where a measurement process is assessed relative to the measurand, the entity quantified by the measurement process [@VIM].
-Measurement process assessment consists of three steps; decomposing the measurement process, designing experiments to islolate measurement process elements, and evaluating bias and dispersion at each element.
+Measurement process assessment consists of three steps; decomposing the measurement process, designing experiments to isolate measurement process elements, and evaluating bias and dispersion at each element.
 In this chapter I will describe and decompose the 16S rRNA sequencing measurement process.
-After decomposing the measurement process I will describe common 16S rRNA measurands, feature abundance, relative abundance, as well as alpha- and beta-diversity.
-Next, I will describe the steps required to conduct an assessment study.
+After decomposing the measurement process I will describe common 16S rRNA measurands including feature abundance, relative abundance, as well as alpha- and beta-diversity.
+Next, I will describe steps for conducting an assessment experment to characterize measurement process elements.
 Finally, I will place the assessment work presented in this dissertation within the larger context of 16S rRNA measurement process assessment.
 
 
@@ -167,23 +167,23 @@ Other commonly used normalization methods include relative log expression (RLE),
 These methods were developed for normalizing microarray and RNAseq data but have been successfully used to normalize 16S rRNA marker-gene survey data [@McMurdie2014].
 
 
-## Designing a Measurement Assessment Experiment
+## Conducting an Assessment Experiment
 
-Measurement assessment experiments are used to characterize the bias and dispersion for elements of a measurement process.
+Measurement assessment experiment are used to characterize the bias and dispersion for elements of a measurement process.
 There are four steps to designing a measurement assessment experiment;
 (1) define the measurand,
 (2) identify appropriate data and metrics for the assessment,
-(3) design an experiment to isolate measurement process element for assessment.
+(3) design an experiment to isolating element(s) of a measurement process for assessment.
 
 
-When developing an assessment method, first define the measurand.
-The measurand is the observed value being quantified.
+First define the measurand when developing an assessment method.
+The measurand is the observed value being quantified [@VIM].
 For marker-gene survey analysis, there are multiple measurand definitions.
 The measurand can be defined based on the downstream analysis, e.g., log fold-change for differential abundance analysis or diversity metric for alpha- and beta-diversity analysis.
-The measurands can also be more general, such as count table values or feature DNA sequence.
+The measurands can also be more general, such as count table abundance values or feature DNA sequence.
 
 
-After defining the measurand, the part of the measurement process being evaluated, and assessment type, appropriate data and metrics are identified.
+After defining the measurand appropriate data and metrics are identified.
 The primary data types used in marker-gene survey measurement assessment include _in-silico_ data, mock communities, and technical replicates.
 Different parts of the measurement process and measurands can be assessed with different data types.
 _in-silico_ data, either simulated sequence data or count tables, can be used to assess computational methods and downstream analysis.
@@ -200,7 +200,7 @@ For qualitative measures, such as feature presence-absence, standard truth table
 Similarly, area under the curve (AUC) and receiver operating characteristics (ROC) curves can be used to evaluate qualitative performance for a set of observed values.
 
 
-The next step is to determine the measurement process steps or element one is interested in evaluating and design an experiment isolating the element.
+The next step is to determine measurement process steps or element one is interested in evaluating and design an experiment isolating the element.
 Assessments can compare the performance of different methods used in individual steps of the measurement process, for example, DNA extraction or PCR.
 Assessment methods can also evalute part of the measurement process, such as the computational or laboratory components.
 Alternatively, one can assess the measurement process as a whole.

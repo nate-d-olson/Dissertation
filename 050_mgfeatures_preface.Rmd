@@ -1,2 +1,6 @@
 # metagenomeFeatures {#metagenomefeatures-chpt}
-An R package for working with 16S rRNA reference databases and marker-gene survey feature data.
+\begin{singlespace}
+\normalfont\Large\center\textit{An R package for working with 16S rRNA reference databases and marker-gene survey feature data.}
+\end{singlespace}
+\vspace{1pc}
+

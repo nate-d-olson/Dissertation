@@ -1,3 +1,5 @@
 # Diversity Assessment {#diversity-assessment-chpt}
-Assessing the impact of sequencing characteristics on 16S rRNA marker-gene surveys beta-diversity analysis.
-<!-- ## Preface -->
+\begin{singlespace}
+\normalfont\Large\center\textit{Assessing the impact of sequencing characteristics on 16S rRNA marker-gene surveys beta-diversity analysis.}
+\end{singlespace}
+\vspace{1pc}
